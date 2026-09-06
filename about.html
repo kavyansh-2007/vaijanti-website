@@ -633,195 +633,6 @@
       100% { transform: translateY(23px); opacity: 0; }
     }
 
-    /* SECTION 2: FOUNDER */
-    .founder-section {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      background: #120e0a;
-      overflow: hidden;
-      display: flex;
-      align-items: stretch;
-    }
-
-    .founder-container {
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      margin: 0 auto;
-    }
-
-    .founder-image-wrapper {
-      width: 50%;
-      min-height: 100vh;
-      overflow: hidden;
-      position: relative;
-      background: #0c0a08;
-    }
-
-    .founder-img {
-      width: 100%;
-      height: 100%;
-      min-height: 100vh;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      transform: scale(1.04);
-    }
-
-    .founder-image-wrapper::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(
-        90deg,
-        transparent 65%,
-        rgba(18,14,10,0.35) 100%
-      );
-    }
-
-    .founder-content-wrapper {
-      width: 50%;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 5.5%;
-      background: #120e0a;
-      position: relative;
-    }
-
-    .founder-quote-box {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      border: 1px solid #704500;
-      background: #1a1104;
-      padding: 42px 48px;
-      border-radius: 6px;
-      margin-bottom: 42px;
-      opacity: 0;
-      transform: translateY(60px);
-    }
-
-    .founder-quote-box::before {
-      content: "";
-      position: absolute;
-      top: -1px;
-      left: 18px;
-      width: 55px;
-      height: 2px;
-      background: #ff9d00;
-    }
-
-    .founder-quote-box p {
-      color: #e1d9d0;
-      font-family: "Roboto", sans-serif;
-      font-size: clamp(16px, 1.2vw, 20px);
-      font-weight: 400;
-      line-height: 1.75;
-      margin: 0;
-      letter-spacing: 0.15px;
-    }
-
-    .founder-quote-box strong {
-      color: #ffd200;
-      font-weight: 700;
-    }
-
-    .quote-icon {
-      position: absolute;
-      top: -21px;
-      left: 25px;
-      background: #1a1104;
-      color: #ffb000;
-      font-family: Georgia, serif;
-      font-size: 48px;
-      font-weight: bold;
-      line-height: 1;
-      padding: 0 10px;
-    }
-
-    .founder-quote-box::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 48%;
-      width: 34px;
-      height: 34px;
-      background: #1a1104;
-      border-right: 1px solid #704500;
-      border-bottom: 1px solid #704500;
-      transform: rotate(45deg);
-    }
-
-    .founder-details {
-      padding-left: 15px;
-      opacity: 0;
-      transform: translateY(40px);
-    }
-
-    .founder-details h3 {
-      color: #ffffff;
-      font-family: "Oswald", sans-serif;
-      font-size: clamp(26px, 2vw, 36px);
-      font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: 0.5px;
-      margin: 0 0 8px 0;
-    }
-
-    .founder-details p {
-      color: #a99a89;
-      font-family: "Roboto", sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      margin: 0 0 28px 0;
-      text-transform: uppercase;
-    }
-
-    .founder-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 140px;
-      border: 1px solid #ff9d00;
-      color: #ffb000;
-      background: transparent;
-      padding: 13px 23px;
-      font-family: "Roboto", sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.8px;
-      text-decoration: none;
-      border-radius: 3px;
-      transition: background-color 0.35s ease, color 0.35s ease, transform 0.35s ease;
-    }
-
-    .founder-btn:hover {
-      background-color: #ff9d00;
-      color: #120e0a;
-      transform: translateY(-2px);
-    }
-
-    .founder-section::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(
-        90deg,
-        #ff9d00 0%,
-        #ffd200 45%,
-        transparent 100%
-      );
-      z-index: 10;
-    }
-
     /* 2. COMPANY VISION SECTION */
     .vg-vision-section {
       width: 100%;
@@ -1619,13 +1430,7 @@
       .vaijanti-group-hero { min-height: 600px; }
       .vaijanti-group-content { padding-left: 6%; padding-right: 6%; padding-bottom: 60px; }
       .vaijanti-scroll-indicator { right: 6%; bottom: 45px; }
-      .founder-container { min-height: 850px; }
-      .founder-image-wrapper { min-height: 850px; }
-      .founder-img { min-height: 850px; }
-      .founder-content-wrapper { min-height: 850px; padding: 60px 5%; }
-      .founder-quote-box { padding: 35px 35px; }
-      .founder-quote-box p { font-size: 16px; line-height: 1.7; }
-      
+
       .vg-vision-content { width: 38%; padding-left: 5%; padding-right: 2%; }
       .vg-vision-content h2 { font-size: 28px; margin-bottom: 18px; }
       .vg-vision-content p { font-size: 14px; }
@@ -1673,22 +1478,7 @@
       .vaijanti-group-title { font-size: 40px; margin-bottom: 15px; }
       .vaijanti-group-subtitle { font-size: 16px; max-width: 360px; margin-bottom: 30px; }
       .vaijanti-scroll-indicator { display: none; }
-      
-      .founder-section { min-height: auto; display: block; }
-      .founder-container { display: flex; flex-direction: column; min-height: auto; }
-      .founder-image-wrapper { width: 100%; height: 70vh; min-height: 500px; max-height: 700px; }
-      .founder-img { width: 100%; height: 100%; min-height: 500px; object-fit: cover; object-position: center top; }
-      .founder-image-wrapper::after {
-        background: linear-gradient(180deg, transparent 60%, rgba(18,14,10,0.45) 100%);
-      }
-      .founder-content-wrapper { width: 100%; min-height: auto; padding: 70px 25px 80px; }
-      .founder-quote-box { padding: 35px 25px; margin-bottom: 40px; }
-      .founder-quote-box p { font-size: 16px; line-height: 1.7; }
-      .founder-details { padding-left: 5px; }
-      .founder-details h3 { font-size: 30px; }
-      .founder-details p { font-size: 11px; line-height: 1.6; letter-spacing: 1.5px; }
-      .founder-quote-box::after { left: 45%; }
-      
+
       .vg-vision-section { padding: 40px 0; }
       .vg-vision-container { flex-direction: column; }
       .vg-vision-content { width: 100%; padding: 0 24px 30px; transform: translateY(30px); }
@@ -1718,14 +1508,6 @@
       .vaijanti-group-title { font-size: 34px; }
       .vaijanti-group-subtitle { font-size: 15px; }
       .vaijanti-breadcrumb { font-size: 12px; }
-      .founder-image-wrapper { height: 62vh; min-height: 450px; }
-      .founder-img { min-height: 450px; }
-      .founder-content-wrapper { padding: 60px 20px 70px; }
-      .founder-quote-box { padding: 30px 20px; }
-      .founder-quote-box p { font-size: 15px; line-height: 1.7; }
-      .quote-icon { left: 18px; font-size: 42px; }
-      .founder-details h3 { font-size: 27px; }
-      .founder-details p { font-size: 10px; letter-spacing: 1.2px; }
       .cert-grid { grid-template-columns: 1fr; }
 
       .vg-impact-grid {
@@ -1747,6 +1529,182 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .vaijanti-scroll-dot { animation: none; }
+    }
+
+    /* CHAIRMAN QUOTE SECTION (same animation/CSS as home.html leader-thought-section) */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-left.revealed { opacity: 1; transform: translateX(0); }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-right.revealed { opacity: 1; transform: translateX(0); }
+
+    .leader-thought-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background-color: #1c1000;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      z-index: 10;
+    }
+    .leader-thought-grid {
+      display: grid;
+      grid-template-columns: 42% 58%;
+      width: 100%;
+      min-height: 100vh;
+      align-items: center;
+    }
+    .leader-image-wrapper {
+      position: relative;
+      height: 100%;
+      min-height: 100vh;
+      background-color: #110900;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .leader-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.5s ease;
+    }
+    .leader-image-wrapper img:hover { transform: scale(1.04); }
+
+    .leader-content-wrapper {
+      padding: 50px 7% 50px 6%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .quote-container {
+      position: relative;
+      background: transparent;
+      padding-bottom: 35px;
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .speech-bubble {
+      position: relative;
+      font-family: 'Roboto', sans-serif;
+      font-size: 23px;
+      line-height: 1.7;
+      color: #e6e6e6;
+      max-width: 100%;
+      margin: 0 0 35px 0;
+      padding: 42px 48px;
+      background-color: #241400;
+      border: 2px solid #4a2805;
+      border-radius: 8px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.45);
+    }
+
+    .speech-bubble strong {
+      font-weight: 700;
+      color: #ffd200;
+    }
+
+    .opening-quote {
+      font-size: 55px;
+      position: absolute;
+      left: 14px;
+      top: 10px;
+      line-height: 1;
+      color: #ff9d00;
+    }
+
+    .closing-quote {
+      font-size: 55px;
+      line-height: 0;
+      position: relative;
+      top: 15px;
+      margin-left: 2px;
+      color: #ff9d00;
+    }
+
+    .speech-bubble::before,
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-style: solid;
+    }
+
+    .speech-bubble::before {
+      border-width: 22px 14px 0 14px;
+      border-color: #4a2805 transparent transparent transparent;
+      z-index: 1;
+    }
+
+    .speech-bubble::after {
+      border-width: 20px 12px 0 12px;
+      border-color: #241400 transparent transparent transparent;
+      bottom: -20px;
+      z-index: 2;
+    }
+
+    .adani-author-area { padding-left: 15px; }
+    .adani-author-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .adani-author-title {
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      color: #b5a695;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 22px;
+    }
+
+    .adani-profile-btn {
+      background-color: transparent;
+      border: 1.5px solid #ff9d00;
+      color: #ff9d00;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 4px;
+      transition: all 0.25s ease;
+      display: inline-block;
+    }
+    .adani-profile-btn:hover {
+      background-color: #ff9d00;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 992px) {
+      .leader-thought-grid { grid-template-columns: 1fr; }
+      .leader-image-wrapper { min-height: 400px; }
+      .leader-thought-section { min-height: auto; }
+      .leader-content-wrapper { padding: 40px 5%; align-items: flex-start; }
     }
   </style>
 </head>
@@ -1892,27 +1850,21 @@
         </div>
       </div>
 
-      <!-- 2. FOUNDER / FROM THE LEADER (PORTRAIT IMAGE APPLIED) -->
-      <section class="founder-section" id="from-the-leader">
-        <div class="founder-container">
-          <div class="founder-image-wrapper">
-            <img src="kavyansh-rana.jpg" alt="Kavyansh Rana" class="founder-img">
+      <!-- 2. FOUNDER / FROM THE LEADER (CHAIRMAN QUOTE SECTION) -->
+      <section class="leader-thought-section" id="from-the-leader">
+        <div class="leader-thought-grid">
+          <div class="leader-image-wrapper reveal-left">
+            <img src="ChatGPT Image Aug 16, 2026, 04_16_28 AM.png" alt="Kavyansh Rana">
           </div>
-          <div class="founder-content-wrapper">
-            <div class="founder-quote-box">
-              <span class="quote-icon">“</span>
-              <p>
-                True <strong>power</strong> does not lie in wealth or balance sheets; it lies in <strong>uplifting lives</strong> and driving the nation forward.
-                <br><br>
-                <strong>Enterprise</strong> is not merely a pursuit of profit, but a <strong>sacred duty</strong> to serve our country and build its <strong>self-reliant future</strong>.
-                <br><br>
-                When purpose leads the work, everything else falls into place.
-              </p>
-            </div>
-            <div class="founder-details">
-              <h3>Kavyansh Rana</h3>
-              <p>FOUNDER &amp; LEADER, VAIJANTI GREEN ENERGY</p>
-              <a href="#profile" class="founder-btn">VIEW PROFILE</a>
+          <div class="leader-content-wrapper reveal-right">
+            <div class="quote-container">
+              <blockquote class="speech-bubble">
+                <span class="opening-quote">&ldquo;</span>Growth means nothing unless it <strong>lifts the people</strong> and places around it. At Vaijanti, we do not measure success only in megawatts or balance sheets, but in <strong>villages electrified</strong>, livelihoods created, and the trust we earn along the way. Every project we build today is a promise to a <strong>self-reliant India</strong> tomorrow.<span class="closing-quote">&rdquo;</span>
+              </blockquote>
+              <div class="adani-author-area">
+                <h3 class="adani-author-name">Kavyansh Rana</h3>
+                <p class="adani-author-title">Founder &amp; Leader, Vaijanti Green Energy</p>
+              </div>
             </div>
           </div>
         </div>
@@ -2502,6 +2454,18 @@
         }
       });
 
+      // Chairman Quote Section Scroll Reveal (same behavior as home.html)
+      const chairmanRevealEls = document.querySelectorAll('.leader-thought-section .reveal-left, .leader-thought-section .reveal-right');
+      const chairmanRevealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      chairmanRevealEls.forEach(el => chairmanRevealObserver.observe(el));
+
       // GSAP & ScrollTrigger Animations
       if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -2547,58 +2511,6 @@
             start: "top top",
             end: "30% top",
             scrub: true
-          }
-        });
-
-        // Founder Animations
-        gsap.fromTo(".founder-image-wrapper", 
-          { x: -100, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 1.2,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: ".founder-section",
-              start: "top 75%",
-              toggleActions: "play none none reverse"
-            }
-          }
-        );
-
-        gsap.to(".founder-img", {
-          yPercent: 6,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".founder-section",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-          }
-        });
-
-        gsap.to(".founder-quote-box", {
-          opacity: 1,
-          y: 0,
-          duration: 1.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".founder-section",
-            start: "top 65%",
-            toggleActions: "play none none reverse"
-          }
-        });
-
-        gsap.to(".founder-details", {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          delay: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".founder-section",
-            start: "top 55%",
-            toggleActions: "play none none reverse"
           }
         });
 
