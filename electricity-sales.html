@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electricity Sales &amp; PPA — Vaijanti Green Energy</title>
+  
+  <!-- Google Fonts: Oswald & Roboto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #190f00;
+      color: #b5a695;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      padding-top: 90px;
+      overflow-x: hidden;
+    }
+
+    /* FIXED HEADER & SPACING */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      background-color: #2e1a00;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 999999; 
+      display: flex;
+      align-items: center;
+      pointer-events: auto; 
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3% 0 4%;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      height: 100%;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-family: 'Oswald', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .logo-orange { color: #ff9d00; }
+    .logo-divider { color: #ff9d00; margin: 0 10px; font-weight: 400; }
+    .logo-yellow { color: #ffd200; letter-spacing: 4px; text-transform: uppercase; }
+    
+    .nav-links { 
+      display: flex; 
+      align-items: center; 
+      list-style: none; 
+      gap: 52px;
+      height: 100%;
+    }
+    .nav-item {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .nav-link {
+      font-family: 'Oswald', sans-serif;
+      color: #e6e6e6;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      transition: color 0.1s ease; 
+      cursor: pointer;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+    .nav-link:hover, .nav-link.active { color: #ff9d00; }
+    
+    .dropdown-arrow {
+      font-size: 18px;
+      transition: transform 0.3s ease;
+      display: inline-block;
+      line-height: 1;
+    }
+    .nav-item:hover .dropdown-arrow,
+    .nav-item.open .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .nav-links > li {
+      position: relative;
+    }
+    .nav-links > li::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-links > li:hover::after,
+    .nav-links > li.active-tab::after {
+      width: 100%;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 90px;
+      left: 0;
+      width: 230px;
+      background-color: #241400;
+      border: 1px solid #4a2805;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      list-style: none;
+      overflow: hidden;
+      
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px) scale(0.97);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+      z-index: 1000;
+    }
+
+    .nav-item:hover .dropdown-menu,
+    .nav-item.open .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .dropdown-item a {
+      display: block;
+      padding: 14px 20px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #e6e6e6;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(74, 40, 5, 0.5);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .dropdown-item:last-child a { border-bottom: none; }
+    .dropdown-item a:hover {
+      background-color: #ff9d00;
+      color: #ffffff;
+      padding-left: 24px;
+    }
+
+    /* HEADER RIGHT ACTIONS */
+    .header-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 0;
+      height: 42px;
+      padding: 0 0 0 15px;
+      background-color: #1c1000;
+      border: 1px solid #4a2805;
+      border-radius: 4px;
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      outline: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease, padding 0.4s ease;
+    }
+
+    .search-container.active .search-input {
+      width: 210px;
+      opacity: 1;
+      visibility: visible;
+      padding: 0 35px 0 15px;
+      border-color: #ff9d00;
+    }
+
+    .search-toggle-btn {
+      width: 42px;
+      height: 42px;
+      background-color: #241400;
+      border: 1px solid #4a2805;
+      border-radius: 4px;
+      color: #ff9d00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 2;
+    }
+
+    .search-toggle-btn:hover {
+      background-color: #ff9d00;
+      color: #ffffff;
+      border-color: #ff9d00;
+    }
+
+    .search-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+    }
+
+    .search-submit-icon {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: #ff9d00;
+      cursor: pointer;
+      display: none;
+      z-index: 3;
+    }
+    .search-container.active .search-submit-icon { display: block; }
+
+    .cta-btn {
+      background-color: #ff9d00;
+      color: #ffffff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      display: inline-block;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .cta-btn:hover { background-color: #e68d00; transform: scale(1.05); }
+
+    /* SCROLL-TO-TOP BUTTON */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(36, 20, 0, 0.85);
+      border: 1.5px solid #ff9d00;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .scroll-to-top:hover { background-color: #ff9d00; transform: translateY(-4px) scale(1.05); }
+    .scroll-to-top svg { width: 18px; height: 18px; stroke: #ff9d00; stroke-width: 2.5; fill: none; transition: stroke 0.3s ease; }
+    .scroll-to-top:hover svg { stroke: #ffffff; }
+    .scroll-to-top svg:first-child { margin-bottom: -6px; }
+
+    /* FLOATING CONTACT WIDGETS */
+    .floating-contact-widgets {
+      position: fixed;
+      bottom: 30px;
+      left: 15px;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-pulse-btn {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .contact-pulse-btn:hover { transform: scale(1.12); }
+
+    .contact-pulse-btn.phone-btn { background-color: #f7a600; color: #ffffff; }
+    .contact-pulse-btn.whatsapp-btn { background-color: #25d366; color: #ffffff; }
+
+    .contact-pulse-btn svg { width: 22px; height: 22px; fill: currentColor; z-index: 2; }
+
+    .contact-pulse-btn::before,
+    .contact-pulse-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 50%;
+      animation: rippleWave 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .contact-pulse-btn.phone-btn::before,
+    .contact-pulse-btn.phone-btn::after { background-color: rgba(247, 166, 0, 0.4); }
+    .contact-pulse-btn.whatsapp-btn::before,
+    .contact-pulse-btn.whatsapp-btn::after { background-color: rgba(37, 211, 102, 0.4); }
+    .contact-pulse-btn::after { animation-delay: 1s; }
+
+    @keyframes rippleWave {
+      0% { transform: scale(1); opacity: 0.85; }
+      100% { transform: scale(2.3); opacity: 0; }
+    }
+
+    /* FLOATING SOCIAL MEDIA SIDEBAR */
+    .social-sidebar {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .social-item {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      height: 54px;
+      width: 200px;
+      border-radius: 50px 0 0 50px;
+      transform: translateX(146px);
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s;
+      box-shadow: -3px 4px 12px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+    .social-item:hover { transform: translateX(0) scale(1.02); }
+    .social-icon-circle {
+      width: 54px; height: 54px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .social-icon-circle svg { width: 24px; height: 24px; }
+    .social-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px; font-weight: 700; color: #ffffff;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding-left: 22px; white-space: nowrap;
+    }
+    .social-item.instagram { background-color: #ff2a2a; }
+    .social-item.instagram .social-icon-circle svg { fill: #ff2a2a; }
+    .social-item.facebook { background-color: #2b82e4; }
+    .social-item.facebook .social-icon-circle svg { fill: #2b82e4; }
+    .social-item.twitter { background-color: #3bc1ed; }
+    .social-item.twitter .social-icon-circle svg { fill: #3bc1ed; }
+
+    /* TOP HERO BANNER */
+    .sales-hero {
+      position: relative;
+      width: 100%;
+      height: 580px;
+      min-height: 580px;
+      background-color: #190f00;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .sales-hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: fill;
+      object-position: top center;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .sales-hero-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to right, rgba(25, 15, 0, 0.55) 0%, rgba(25, 15, 0, 0.35) 42%, rgba(25, 15, 0, 0.1) 75%, transparent 100%), linear-gradient(to top, rgba(25, 15, 0, 0.5) 0%, transparent 50%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .sales-hero-container { position: relative; z-index: 3; max-width: 1240px; width: 100%; margin: 0 auto; padding: 0 4%; }
+    .sales-hero-content { max-width: 680px; background: transparent; padding: 0; }
+    .hero-tag { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 700; color: #ff9d00; letter-spacing: 3px; text-transform: uppercase; display: block; margin-bottom: 12px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); }
+    .hero-heading { font-family: 'Oswald', sans-serif; font-size: 54px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 16px; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95); }
+    .hero-paragraph { color: #f0e6dc; font-size: 14.5px; line-height: 1.65; max-width: 600px; margin-bottom: 26px; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95); }
+    .hero-btn-group { display: flex; gap: 14px; }
+    .btn-orange-hero { background-color: #ff9d00; color: #ffffff; font-family: 'Oswald', sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; text-decoration: none; padding: 12px 24px; border-radius: 4px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: background-color 0.15s ease; }
+    .btn-orange-hero:hover { background-color: #e68d00; }
+    .btn-outline-hero { background-color: transparent; color: #ffffff; font-family: 'Oswald', sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; text-decoration: none; padding: 12px 24px; border-radius: 4px; border: 1.5px solid rgba(255, 255, 255, 0.4); display: inline-flex; align-items: center; cursor: pointer; transition: border-color 0.15s ease, background-color 0.15s ease; }
+    .btn-outline-hero:hover { border-color: #ff9d00; background-color: rgba(255,255,255,0.05); }
+
+    /* ADVANTAGE SECTION */
+    .advantage-section { background-color: #190f00; padding: 50px 4% 50px 4%; position: relative; z-index: 10; }
+    .advantage-container { max-width: 1140px; margin: 0 auto; }
+    .section-small-tag { font-family: 'Oswald', sans-serif; font-size: 11.5px; font-weight: 700; color: #ff9d00; letter-spacing: 2.5px; text-transform: uppercase; display: block; margin-bottom: 6px; }
+    .section-main-heading { font-family: 'Oswald', sans-serif; font-size: 38px; font-weight: 700; color: #ffffff; line-height: 1.15; margin-bottom: 25px; }
+    .advantage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .adv-card { background-color: #211300; border: 1px solid #4a2805; border-radius: 6px; padding: 26px 24px; display: flex; flex-direction: column; }
+    .adv-icon-box { width: 42px; height: 42px; background-color: rgba(255, 157, 0, 0.08); border: 1px solid #4a2805; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .adv-icon-box svg { width: 18px; height: 18px; stroke: #ff9d00; stroke-width: 2; fill: none; }
+    .adv-title { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 10px; }
+    .adv-desc { color: #b5a695; font-size: 13px; line-height: 1.6; }
+
+    /* PPA SECTION */
+    .ppa-section { background-color: #2e1a00; padding: 75px 4%; position: relative; z-index: 10; }
+    .ppa-container { max-width: 1140px; margin: 0 auto; }
+    .ppa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .ppa-card { background-color: #241400; border: 1px solid #4a2805; border-top: 3px solid #ff9d00; border-radius: 6px; padding: 28px 26px; display: flex; flex-direction: column; }
+    .ppa-header { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+    .ppa-icon { width: 44px; height: 44px; background-color: rgba(255, 157, 0, 0.08); border: 1px solid #4a2805; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ppa-icon svg { width: 18px; height: 18px; stroke: #ff9d00; stroke-width: 2; fill: none; }
+    .ppa-title-wrap h3 { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: #ffffff; line-height: 1.15; }
+    .ppa-title-wrap span { color: #8c7c6d; font-size: 12px; display: block; margin-top: 2px; }
+    .ppa-desc { color: #b5a695; font-size: 13px; line-height: 1.6; margin-bottom: 18px; flex: 1; }
+    .ppa-boxes-row { display: grid; grid-template-columns: 1fr 1.6fr; gap: 12px; margin-bottom: 16px; }
+    .ppa-box { background-color: #170d00; border: 1px solid #3d2104; border-radius: 4px; padding: 10px 12px; }
+    .ppa-box-lbl { font-family: 'Oswald', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; color: #ff9d00; text-transform: uppercase; display: block; margin-bottom: 2px; }
+    .ppa-box-val { font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 700; color: #ffffff; }
+    .ppa-tags-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ppa-tag-pill { background-color: #1a0e00; border: 1px solid #3d2104; color: #b5a695; font-size: 11px; padding: 4px 9px; border-radius: 3px; }
+
+    /* PRICING SECTION */
+    .pricing-section { background-color: #190f00; padding: 75px 4%; position: relative; z-index: 10; }
+    .pricing-container { max-width: 1140px; margin: 0 auto; }
+    .pricing-desc { color: #a89685; font-size: 13.5px; max-width: 650px; margin-bottom: 30px; line-height: 1.6; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .pricing-card { background-color: #211300; border: 1px solid #4a2805; border-radius: 6px; padding: 24px 20px; display: flex; flex-direction: column; }
+    .pricing-card-lbl { font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #ff9d00; text-transform: uppercase; margin-bottom: 12px; }
+    .pricing-rate { font-family: 'Oswald', sans-serif; font-size: 30px; font-weight: 700; color: #ff9d00; line-height: 1; margin-bottom: 4px; }
+    .pricing-unit { color: #8c7c6d; font-size: 11.5px; margin-bottom: 16px; border-bottom: 1px solid #361e05; padding-bottom: 12px; }
+    .pricing-subnote { color: #b5a695; font-size: 11.5px; }
+
+    /* PROCESS SECTION */
+    .process-section { background-color: #2e1a00; padding: 75px 4%; position: relative; z-index: 10; }
+    .process-container { max-width: 1140px; margin: 0 auto; text-align: center; }
+    .process-steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+    .process-step { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .step-circle { width: 58px; height: 58px; border-radius: 50%; border: 2px solid #ff9d00; background-color: #241400; display: flex; align-items: center; justify-content: center; font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: #ff9d00; margin-bottom: 18px; }
+    .step-title { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+    .step-desc { color: #b5a695; font-size: 12px; line-height: 1.5; }
+
+    /* INDUSTRY BANNER */
+    .industry-banner { position: relative; width: 100%; height: 260px; background-color: #190f00; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .industry-banner-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.75; pointer-events: none; }
+    .industry-banner-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(25, 15, 0, 0.45), rgba(25, 15, 0, 0.3), rgba(25, 15, 0, 0.45)); z-index: 2; pointer-events: none; }
+    .industry-banner-content { position: relative; z-index: 3; text-align: center; }
+    .industry-tag { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2.5px; color: #ff9d00; text-transform: uppercase; display: block; margin-bottom: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.9); }
+    .industry-heading { font-family: 'Oswald', sans-serif; font-size: 40px; font-weight: 700; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
+
+    /* QUOTE CTA */
+    .quote-cta-section { background-color: #190f00; padding: 70px 4% 85px 4%; text-align: center; position: relative; z-index: 10; }
+    .quote-cta-container { max-width: 1140px; margin: 0 auto; }
+    .quote-heading { font-family: 'Oswald', sans-serif; font-size: 42px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 12px; }
+    .quote-sub { color: #b5a695; font-size: 14.5px; max-width: 600px; margin: 0 auto 28px auto; line-height: 1.65; }
+    .quote-btn-group { display: flex; justify-content: center; gap: 16px; }
+    .btn-quote-orange { background-color: #ff9d00; color: #ffffff; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; text-decoration: none; padding: 13px 26px; border-radius: 4px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: background-color 0.15s ease; }
+    .btn-quote-orange:hover { background-color: #e68d00; }
+    .btn-quote-outline { background-color: transparent; color: #ffffff; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; text-decoration: none; padding: 13px 26px; border-radius: 4px; border: 1.5px solid #4a2805; display: inline-flex; align-items: center; cursor: pointer; transition: background-color 0.15s ease, border-color 0.15s ease; }
+    .btn-quote-outline:hover { border-color: #ff9d00; background-color: rgba(255,255,255,0.05); }
+
+    /* FOOTER */
+    .yellow-strip { background-color: #f7a600; color: #ffffff; text-align: center; padding: 16px 0; font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; width: 100%; position: relative; z-index: 10; }
+    .footer-main { background-color: #190f00; padding: 70px 6% 60px 6%; display: grid; grid-template-columns: 2fr 1fr 1.2fr; gap: 60px; position: relative; z-index: 10; }
+    .brand-header { display: flex; align-items: center; gap: 15px; margin-bottom: 22px; }
+    .brand-icon { width: 38px; height: 38px; background-color: #f7a600; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 18px; }
+    .brand-title h3 { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; line-height: 1.1; }
+    .brand-title span { font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 600; color: #b5a695; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-top: 4px; }
+    .brand-desc { color: #9d8b7a; font-size: 14px; line-height: 1.6; max-width: 440px; margin-bottom: 25px; }
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; color: #9d8b7a; font-size: 14px; }
+    .contact-item svg { width: 15px; height: 15px; stroke: #f7a600; fill: none; stroke-width: 2; flex-shrink: 0; }
+    .contact-item a { color: #9d8b7a; text-decoration: none; transition: color 0.15s ease; }
+    .contact-item a:hover { color: #f7a600; }
+    .footer-col h4 { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: #ffffff; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links li a { color: #9d8b7a; text-decoration: none; font-size: 14px; transition: color 0.15s ease; }
+    .footer-links li a:hover { color: #f7a600; }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 24px 6%; display: flex; justify-content: space-between; align-items: center; color: #8c735c; font-size: 13px; background-color: #190f00; position: relative; z-index: 10; }
+  </style>
+</head>
+<body>
+
+  <!-- FIXED HEADER -->
+  <header>
+    <nav class="navbar">
+      <a href="./index.html" class="brand-logo">
+        <span class="logo-orange">Vaijanti</span>
+        <span class="logo-divider">|</span>
+        <span class="logo-yellow">RENEWABLE</span>
+      </a>
+
+      <ul class="nav-links">
+        <li class="nav-item"><a href="./index.html" class="nav-link">HOME</a></li>
+        
+        <li class="nav-item" id="projectsNavItem">
+          <span class="nav-link">
+            PROJECTS <span class="dropdown-arrow">&#9662;</span>
+          </span>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="./projects.html#upcoming">Upcoming Projects</a></li>
+            <li class="dropdown-item"><a href="./projects.html#running">Running Projects</a></li>
+            <li class="dropdown-item"><a href="./projects.html#completed">Completed Projects</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="./about.html" class="nav-link">
+            ABOUT <span class="dropdown-arrow">&#9662;</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="./about.html#company">Vaijanti Group</a></li>
+            <li class="dropdown-item"><a href="./about.html#thoughts">From the Leader</a></li>
+            <li class="dropdown-item"><a href="./about.html#leadership">Leadership</a></li>
+            <li class="dropdown-item"><a href="./about.html#journey">Our Journey</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item active-tab"><a href="./electricity-sales.html" class="nav-link active">ELECTRICITY SALES</a></li>
+        <li class="nav-item"><a href="./investors.html" class="nav-link">INVESTORS</a></li>
+        <li class="nav-item"><a href="./contact.html" class="nav-link">CONTACT</a></li>
+      </ul>
+
+      <div class="header-right-actions">
+        <div class="search-container" id="searchContainer">
+          <input type="text" class="search-input" id="searchInput" placeholder="Search projects, solar..." />
+          <button class="search-toggle-btn" id="searchToggleBtn" aria-label="Toggle Search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+          <button class="search-submit-icon" id="searchSubmitBtn" aria-label="Submit Search">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="#ff9d00" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+        <a href="./contact.html" class="cta-btn">GET IN TOUCH</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- FLOATING INTERACTIVE CONTACT WIDGETS -->
+  <div class="floating-contact-widgets">
+    <a href="tel:+918950444885" class="contact-pulse-btn phone-btn" aria-label="Call Us (+91 8950444885)">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    </a>
+
+    <a href="https://wa.me/918950444885" target="_blank" class="contact-pulse-btn whatsapp-btn" aria-label="WhatsApp Us (+91 8950444885)">
+      <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+  </div>
+
+  <!-- FLOATING SOCIAL MEDIA SIDEBAR -->
+  <div class="social-sidebar">
+    <a href="https://instagram.com" target="_blank" class="social-item instagram">
+      <div class="social-icon-circle">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="#ff2a2a" stroke-width="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="#ff2a2a" stroke-width="2"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#ff2a2a" stroke-width="2" stroke-linecap="round"></line></svg>
+      </div>
+      <span class="social-label">Instagram</span>
+    </a>
+
+    <a href="https://facebook.com" target="_blank" class="social-item facebook">
+      <div class="social-icon-circle">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="#2b82e4"></path></svg>
+      </div>
+      <span class="social-label">Facebook</span>
+    </a>
+
+    <a href="https://twitter.com" target="_blank" class="social-item twitter">
+      <div class="social-icon-circle">
+        <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" fill="#3bc1ed"></path></svg>
+      </div>
+      <span class="social-label">Twitter</span>
+    </a>
+  </div>
+
+  <!-- SCROLL-TO-TOP BUTTON -->
+  <div class="scroll-to-top" id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </div>
+
+  <main>
+    <!-- TOP HERO BANNER -->
+    <section class="sales-hero">
+      <img src="electricity sales 1.jpg" alt="Electricity Sales" class="sales-hero-bg">
+      <div class="sales-hero-overlay"></div>
+
+      <div class="sales-hero-container">
+        <div class="sales-hero-content">
+          <span class="hero-tag">ELECTRICITY SALES</span>
+          <h1 class="hero-heading">Clean Power, Long-Term Cost Certainty</h1>
+          <p class="hero-paragraph">
+            Vaijanti Green Energy supplies solar electricity to industries, commercial consumers, and government utilities across India through flexible Power Purchase Agreements — fixed tariffs, guaranteed supply, zero fuel risk.
+          </p>
+          <div class="hero-btn-group">
+            <a href="./contact.html" class="btn-orange-hero">GET A QUOTE &rarr;</a>
+            <a href="#ppa-structures" class="btn-outline-hero">VIEW PPA TYPES</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE VAIJANTI ADVANTAGE -->
+    <section class="advantage-section">
+      <div class="advantage-container">
+        <span class="section-small-tag">THE VAIJANTI ADVANTAGE</span>
+        <h2 class="section-main-heading">Why Buy Solar Power from Vaijanti?</h2>
+
+        <div class="advantage-grid">
+          <div class="adv-card">
+            <div class="adv-icon-box">
+              <svg viewBox="0 0 24 24"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
+            </div>
+            <h3 class="adv-title">Fixed Tariff for 25 Years</h3>
+            <p class="adv-desc">
+              Hedge against grid price volatility. Secure a predictable, locked-in electricity rate below grid tariffs for the entire duration of the Power Purchase Agreement.
+            </p>
+          </div>
+
+          <div class="adv-card">
+            <div class="adv-icon-box">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <h3 class="adv-title">500+ MW Proven Capacity</h3>
+            <p class="adv-desc">
+              Partner with a reliable generator. Our operational plants consistently deliver guaranteed power supply to government and large industrial counterparties.
+            </p>
+          </div>
+
+          <div class="adv-card">
+            <div class="adv-icon-box">
+              <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <h3 class="adv-title">Rajasthan's Solar Yield</h3>
+            <p class="adv-desc">
+              Leverage Rajasthan's GHI advantage. Our plants generate maximum irradiance, translating to higher, more reliable power output for our PPA clients.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PPA STRUCTURES WE OFFER -->
+    <section id="ppa-structures" class="ppa-section">
+      <div class="ppa-container">
+        <span class="section-small-tag">POWER PURCHASE AGREEMENTS</span>
+        <h2 class="section-main-heading">PPA Structures We Offer</h2>
+
+        <div class="ppa-grid">
+          <div class="ppa-card">
+            <div class="ppa-header">
+              <div class="ppa-icon">
+                <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="12" y1="18" x2="12" y2="18.01"></line><line x1="12" y1="14" x2="12" y2="14.01"></line><line x1="12" y1="10" x2="12" y2="10.01"></line><line x1="12" y1="6" x2="12" y2="6.01"></line><line x1="16" y1="14" x2="16" y2="14.01"></line><line x1="16" y1="10" x2="16" y2="10.01"></line><line x1="16" y1="6" x2="16" y2="6.01"></line><line x1="8" y1="14" x2="8" y2="14.01"></line><line x1="8" y1="10" x2="8" y2="10.01"></line><line x1="8" y1="6" x2="8" y2="6.01"></line></svg>
+              </div>
+              <div class="ppa-title-wrap">
+                <h3>Government / Discom PPA</h3>
+                <span>State Discoms, NTPC, SECI</span>
+              </div>
+            </div>
+            <p class="ppa-desc">
+              Selling solar electricity directly to state electricity distribution companies (Discoms) and central government bodies like SECI and NTPC through competitive bidding.
+            </p>
+            <div class="ppa-boxes-row">
+              <div class="ppa-box">
+                <span class="ppa-box-lbl">TERM</span>
+                <span class="ppa-box-val">25 years</span>
+              </div>
+              <div class="ppa-box">
+                <span class="ppa-box-lbl">TARIFF</span>
+                <span class="ppa-box-val">Competitive Bid-based</span>
+              </div>
+            </div>
+            <div class="ppa-tags-list">
+              <span class="ppa-tag-pill">CERC/RERC Compliant</span>
+              <span class="ppa-tag-pill">Grid Connected</span>
+              <span class="ppa-tag-pill">AAA Rated Offtakers</span>
+            </div>
+          </div>
+
+          <div class="ppa-card">
+            <div class="ppa-header">
+              <div class="ppa-icon">
+                <svg viewBox="0 0 24 24"><path d="M2 20h20"></path><path d="M5 20V8l5 4V8l5 4V4l5 4v12"></path></svg>
+              </div>
+              <div class="ppa-title-wrap">
+                <h3>Industrial Open Access PPA</h3>
+                <span>Factories, Mines, Cement, Textile</span>
+              </div>
+            </div>
+            <p class="ppa-desc">
+              Direct sale of power to large industrial consumers using open access transmission. Bypass rising grid tariffs and secure fixed-rate green power.
+            </p>
+            <div class="ppa-boxes-row">
+              <div class="ppa-box">
+                <span class="ppa-box-lbl">TERM</span>
+                <span class="ppa-box-val">10–25 years</span>
+              </div>
+              <div class="ppa-box">
+                <span class="ppa-box-lbl">TARIFF</span>
+                <span class="ppa-box-val">Fixed, Below Grid Tariff</span>
+              </div>
+            </div>
+            <div class="ppa-tags-list">
+              <span class="ppa-tag-pill">Reduced Carbon Footprint</span>
+              <span class="ppa-tag-pill">Interstate/Intrastate OA</span>
+              <span class="ppa-tag-pill">ESG Compliance</span>
+            </div>
+          </div>
+
+          <div class="ppa-card">
+            <div class="ppa-header">
+              <div class="ppa-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div class="ppa-title-wrap">
+                <h3>Group Captive Structure</h3>
+                <span>Industrial Clusters, SEZs</span>
+              </div>
+            </div>
+            <p class="ppa-desc">
+              Industrial consumers group together to consume power from a specific solar plant, benefiting from captive consumption exemptions on electricity duty.
+            </p>
+            <div class="ppa-boxes-row">
+              <div class="ppa-box">
+                <span class="ppa-box-lbl">TERM</span>
+                <span class="ppa-box-val">15–25 years</span>
+              </div>
+              <div class="ppa-box">
+                <span class="ppa-box-lbl">TARIFF</span>
+                <span class="ppa-box-val">Mutually Agreed Shared Rate</span>
+              </div>
+            </div>
+            <div class="ppa-tags-list">
+              <span class="ppa-tag-pill">Captive Exemptions</span>
+              <span class="ppa-tag-pill">Multi-consumer Model</span>
+              <span class="ppa-tag-pill">Shared Asset Advantage</span>
+            </div>
+          </div>
+
+          <div class="ppa-card">
+            <div class="ppa-header">
+              <div class="ppa-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              </div>
+              <div class="ppa-title-wrap">
+                <h3>Commercial &amp; C&amp;I PPA</h3>
+                <span>Hospitals, Hotels, Malls, Data Centers</span>
+              </div>
+            </div>
+            <p class="ppa-desc">
+              Fixed-rate solar power for large commercial and service-oriented establishments seeking to reduce energy costs and enhance sustainability credentials.
+            </p>
+            <div class="ppa-boxes-row">
+              <div class="ppa-box">
+                <span class="ppa-box-lbl">TERM</span>
+                <span class="ppa-box-val">10–20 years</span>
+              </div>
+              <div class="ppa-box">
+                <span class="ppa-box-lbl">TARIFF</span>
+                <span class="ppa-box-val">Fixed with Annual Escalation Cap</span>
+              </div>
+            </div>
+            <div class="ppa-tags-list">
+              <span class="ppa-tag-pill">Green Energy Certification</span>
+              <span class="ppa-tag-pill">Reduced Operational Cost</span>
+              <span class="ppa-tag-pill">Predictable Overheads</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDICATIVE TARIFF RANGE -->
+    <section class="pricing-section">
+      <div class="pricing-container">
+        <span class="section-small-tag">PRICING</span>
+        <h2 class="section-main-heading">Indicative Tariff Range</h2>
+        <p class="pricing-desc">
+          Tariffs are specific to project location, consumer load profile, state transmission charges, and regulatory frameworks. Contact us for a precise commercial proposal for your facility.
+        </p>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <span class="pricing-card-lbl">GOVERNMENT PPA</span>
+            <div class="pricing-rate">₹2.20 – ₹2.80</div>
+            <div class="pricing-unit">per kWh (Bid Based)</div>
+            <p class="pricing-subnote">RERC/CERC Regulated, 25yr Term</p>
+          </div>
+          <div class="pricing-card">
+            <span class="pricing-card-lbl">INDUSTRIAL OA</span>
+            <div class="pricing-rate">₹3.00 – ₹3.80</div>
+            <div class="pricing-unit">per kWh (Open Access)</div>
+            <p class="pricing-subnote">Subject to OA charges &amp; wheeling</p>
+          </div>
+          <div class="pricing-card">
+            <span class="pricing-card-lbl">GROUP CAPTIVE</span>
+            <div class="pricing-rate">₹2.80 – ₹3.50</div>
+            <div class="pricing-unit">per kWh</div>
+            <p class="pricing-subnote">Subject to cross subsidy exemptions</p>
+          </div>
+          <div class="pricing-card">
+            <span class="pricing-card-lbl">C&amp;I / COMMERCIAL</span>
+            <div class="pricing-rate">₹3.50 – ₹4.20</div>
+            <div class="pricing-unit">per kWh</div>
+            <p class="pricing-subnote">Data centers, Hospitals, Malls</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROCESS -->
+    <section class="process-section">
+      <div class="process-container">
+        <span class="section-small-tag">THE PROCESS</span>
+        <h2 class="section-main-heading">How to Buy Power from Vaijanti</h2>
+
+        <div class="process-steps-grid">
+          <div class="process-step">
+            <div class="step-circle">01</div>
+            <h3 class="step-title">Inquiry</h3>
+            <p class="step-desc">Provide consumer load, location, and power consumption profile.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-circle">02</div>
+            <h3 class="step-title">Feasibility</h3>
+            <p class="step-desc">Vaijanti assesses Open Access transmission, grid connectivity, and regulatory hurdles.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-circle">03</div>
+            <h3 class="step-title">Proposal &amp; PPA</h3>
+            <p class="step-desc">A detailed commercial offer is made, followed by legal PPA execution.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-circle">04</div>
+            <h3 class="step-title">Regulatory Approvals</h3>
+            <p class="step-desc">Vaijanti handles all open access applications, grid connectivity filings, and Discom NOCs.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-circle">05</div>
+            <h3 class="step-title">Power Supply</h3>
+            <p class="step-desc">Once approvals are received, power flows to the facility, monitored 24/7 by our O&amp;M team.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRY BANNER -->
+    <section class="industry-banner">
+      <img src="electricity sales 2.jpg" alt="Industrial Manufacturing" class="industry-banner-bg">
+      <div class="industry-banner-overlay"></div>
+      <div class="industry-banner-content">
+        <span class="industry-tag">CEMENT | STEEL | TEXTILE | MINING</span>
+        <h2 class="industry-heading">Hedge Your Industrial Power Cost</h2>
+      </div>
+    </section>
+
+    <!-- QUOTE CTA -->
+    <section class="quote-cta-section">
+      <div class="quote-cta-container">
+        <span class="section-small-tag">GET STARTED TODAY</span>
+        <h2 class="quote-heading">Request a PPA Proposal</h2>
+        <p class="quote-sub">
+          Share your energy requirements and location. Our commercial team will assess feasibility and provide an indicative PPA offer within 48 hours.
+        </p>
+        <div class="quote-btn-group">
+          <a href="./contact.html" class="btn-quote-orange">REQUEST A QUOTE</a>
+          <a href="./projects.html" class="btn-quote-outline">VIEW PROJECTS</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="yellow-strip">
+      HARNESSING RAJASTHAN'S SUN — POWERING INDIA'S TOMORROW
+    </div>
+
+    <div class="footer-main">
+      <div>
+        <div class="brand-header">
+          <div class="brand-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <div class="brand-title">
+            <h3>VAIJANTI GREEN ENERGY</h3>
+            <span>SOLAR POWER DEVELOPMENT</span>
+          </div>
+        </div>
+        <p class="brand-desc">
+          Vaijanti Green Energy is a leading solar power plant developer and electricity supplier based in Rajasthan. We establish large-scale solar projects and deliver clean, affordable power to industries and governments across India.
+        </p>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-8-7.5-8-12a8 8 0 1 1 16 0c0 4.5-8 12-8 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+            <span>Vaijanti Group, Bahadurgarh, Haryana — 124507, India</span>
+          </li>
+          <li class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <a href="tel:+918950444885">+91 8950444885</a>
+          </li>
+          <li class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <a href="mailto:contact@vaijantigroup.com">contact@vaijantigroup.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>QUICK LINKS</h4>
+        <ul class="footer-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./projects.html">Projects</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./electricity-sales.html">Electricity Sales</a></li>
+          <li><a href="./investors.html">Investors</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>OUR SERVICES</h4>
+        <ul class="footer-links">
+          <li><a href="./projects.html">Solar Power Plant Development</a></li>
+          <li><a href="./electricity-sales.html">Electricity Sales &amp; PPA</a></li>
+          <li><a href="./projects.html">Government Solar Projects</a></li>
+          <li><a href="./electricity-sales.html">Industrial Power Supply</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Vaijanti Green Energy. All rights reserved.</div>
+      <div>vaijantigroup.com — Rajasthan, India</div>
+    </div>
+  </footer>
+
+  <!-- CONTROLLER SCRIPT -->
+  <script>
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Header Dropdown Toggle for Projects/About
+      const projectsNavItem = document.getElementById('projectsNavItem');
+      if (projectsNavItem) {
+        const projectsParentSpan = projectsNavItem.querySelector('.nav-link');
+        projectsParentSpan.addEventListener('click', (e) => {
+          e.stopPropagation();
+          projectsNavItem.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (!projectsNavItem.contains(e.target)) {
+            projectsNavItem.classList.remove('open');
+          }
+        });
+      }
+
+      // Search Bar Functionality
+      const searchContainer = document.getElementById('searchContainer');
+      const searchToggleBtn = document.getElementById('searchToggleBtn');
+      const searchInput = document.getElementById('searchInput');
+
+      if (searchToggleBtn && searchContainer) {
+        searchToggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          searchContainer.classList.toggle('active');
+          if (searchContainer.classList.contains('active')) {
+            searchInput.focus();
+          } else {
+            searchInput.value = '';
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!searchContainer.contains(e.target)) {
+            searchContainer.classList.remove('active');
+          }
+        });
+      }
+
+      // Scroll-to-Top Visibility Handler
+      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.classList.add('visible');
+        } else {
+          scrollToTopBtn.classList.remove('visible');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

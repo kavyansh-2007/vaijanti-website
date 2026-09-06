@@ -1,0 +1,2455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaijanti Green Energy — Home</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { 
+      scroll-behavior: smooth; 
+    }
+
+    body {
+      background-color: #2e1a00;
+      color: #b5a695;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      padding-top: 90px;
+      overflow-x: hidden;
+    }
+
+    /* ============================================================
+        FIXED HEADER & SPACING
+    ============================================================ */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      background-color: #2e1a00;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 999999; 
+      display: flex;
+      align-items: center;
+      pointer-events: auto; 
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3% 0 4%;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      height: 100%;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-family: 'Oswald', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .logo-orange { color: #ff9d00; }
+    .logo-divider { color: #ff9d00; margin: 0 10px; font-weight: 400; }
+    .logo-yellow { color: #ffd200; letter-spacing: 4px; text-transform: uppercase; }
+    
+    .nav-links { 
+      display: flex; 
+      align-items: center; 
+      list-style: none; 
+      gap: 52px;
+      height: 100%;
+    }
+    .nav-item {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .nav-link {
+      font-family: 'Oswald', sans-serif;
+      color: #e6e6e6;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      transition: color 0.1s ease; 
+      cursor: pointer;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+    .nav-link:hover, .nav-link.active { color: #ff9d00; }
+    
+    .dropdown-arrow {
+      font-size: 18px;
+      transition: transform 0.3s ease;
+      display: inline-block;
+      line-height: 1;
+    }
+    .nav-item:hover .dropdown-arrow,
+    .nav-item.open .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .nav-links > li {
+      position: relative;
+    }
+    .nav-links > li::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-links > li:hover::after,
+    .nav-links > li.active-tab::after {
+      width: 100%;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 90px;
+      left: 0;
+      width: 230px;
+      background-color: #241400;
+      border: 1px solid #4a2805;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      list-style: none;
+      overflow: hidden;
+      
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px) scale(0.97);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+      z-index: 1000;
+    }
+
+    .nav-item:hover .dropdown-menu,
+    .nav-item.open .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .dropdown-item a {
+      display: block;
+      padding: 14px 20px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #e6e6e6;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(74, 40, 5, 0.5);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .dropdown-item:last-child a {
+      border-bottom: none;
+    }
+    .dropdown-item a:hover {
+      background-color: #ff9d00;
+      color: #ffffff;
+      padding-left: 24px;
+    }
+
+    /* HEADER RIGHT ACTIONS */
+    .header-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 0;
+      height: 42px;
+      padding: 0 0 0 15px;
+      background-color: #1c1000;
+      border: 1px solid #4a2805;
+      border-radius: 4px;
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      outline: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease, padding 0.4s ease;
+    }
+
+    .search-container.active .search-input {
+      width: 210px;
+      opacity: 1;
+      visibility: visible;
+      padding: 0 35px 0 15px;
+      border-color: #ff9d00;
+    }
+
+    .search-toggle-btn {
+      width: 42px;
+      height: 42px;
+      background-color: #241400;
+      border: 1px solid #4a2805;
+      border-radius: 4px;
+      color: #ff9d00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 2;
+    }
+
+    .search-toggle-btn:hover {
+      background-color: #ff9d00;
+      color: #ffffff;
+      border-color: #ff9d00;
+    }
+
+    .search-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+    }
+
+    .search-submit-icon {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: #ff9d00;
+      cursor: pointer;
+      display: none;
+      z-index: 3;
+    }
+    .search-container.active .search-submit-icon {
+      display: block;
+    }
+
+    .cta-btn {
+      background-color: #ff9d00;
+      color: #ffffff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      display: inline-block;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .cta-btn:hover { background-color: #e68d00; transform: scale(1.05); }
+
+    /* SCROLL-TO-TOP BUTTON */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(36, 20, 0, 0.85);
+      border: 1.5px solid #ff9d00;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .scroll-to-top:hover { background-color: #ff9d00; transform: translateY(-4px) scale(1.05); }
+    .scroll-to-top svg { width: 18px; height: 18px; stroke: #ff9d00; stroke-width: 2.5; fill: none; transition: stroke 0.3s ease; }
+    .scroll-to-top:hover svg { stroke: #ffffff; }
+    .scroll-to-top svg:first-child { margin-bottom: -6px; }
+
+    /* FLOATING CONTACT WIDGETS */
+    .floating-contact-widgets {
+      position: fixed;
+      bottom: 30px;
+      left: 15px;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-pulse-btn {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .contact-pulse-btn:hover {
+      transform: scale(1.12);
+    }
+
+    .contact-pulse-btn.phone-btn {
+      background-color: #f7a600;
+      color: #ffffff;
+    }
+
+    .contact-pulse-btn.whatsapp-btn {
+      background-color: #25d366;
+      color: #ffffff;
+    }
+
+    .contact-pulse-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      z-index: 2;
+    }
+
+    .contact-pulse-btn::before,
+    .contact-pulse-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 50%;
+      animation: rippleWave 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .contact-pulse-btn.phone-btn::before,
+    .contact-pulse-btn.phone-btn::after {
+      background-color: rgba(247, 166, 0, 0.4);
+    }
+    .contact-pulse-btn.whatsapp-btn::before,
+    .contact-pulse-btn.whatsapp-btn::after {
+      background-color: rgba(37, 211, 102, 0.4);
+    }
+    .contact-pulse-btn::after {
+      animation-delay: 1s;
+    }
+
+    @keyframes rippleWave {
+      0% {
+        transform: scale(1);
+        opacity: 0.85;
+      }
+      100% {
+        transform: scale(2.3);
+        opacity: 0;
+      }
+    }
+
+    /* FLOATING SOCIAL MEDIA SIDEBAR */
+    .social-sidebar {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .social-item {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      height: 54px;
+      width: 200px;
+      border-radius: 50px 0 0 50px;
+      transform: translateX(146px);
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s;
+      box-shadow: -3px 4px 12px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+    .social-item:hover { transform: translateX(0) scale(1.02); }
+    .social-icon-circle {
+      width: 54px;
+      height: 54px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .social-icon-circle svg { width: 24px; height: 24px; }
+    .social-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding-left: 22px;
+      white-space: nowrap;
+    }
+    .social-item.instagram { background-color: #ff2a2a; }
+    .social-item.instagram .social-icon-circle svg { fill: #ff2a2a; }
+    .social-item.facebook { background-color: #2b82e4; }
+    .social-item.facebook .social-icon-circle svg { fill: #2b82e4; }
+    .social-item.twitter { background-color: #3bc1ed; }
+    .social-item.twitter .social-icon-circle svg { fill: #3bc1ed; }
+
+    /* REVEAL ANIMATIONS */
+    .word-split-target .reveal-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(24px);
+      filter: blur(4px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+      will-change: opacity, transform, filter;
+    }
+    .word-split-target.revealed .reveal-word {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-left.revealed { opacity: 1; transform: translateX(0); }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-right.revealed { opacity: 1; transform: translateX(0); }
+
+    .reveal-from-bottom {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-from-bottom.revealed { opacity: 1; transform: translateY(0); }
+
+    /* HERO SECTION */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      min-height: calc(100vh - 90px);
+      background-color: #190f00;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 60px 4% 80px 4%;
+      overflow: hidden;
+    }
+    .hero-carousel {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .carousel-slide {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      display: none;
+      object-fit: cover;
+      filter: brightness(1.15) contrast(1.05);
+      transition: transform 6s ease;
+    }
+    .carousel-slide.active { display: block; transform: scale(1.04); }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
+      z-index: 2; 
+      pointer-events: none; 
+    }
+    .hero-container { position: relative; z-index: 3; max-width: 100%; width: 100%; margin: 0; }
+    .hero-content { max-width: 820px; }
+    .hero-badge {
+      display: inline-block;
+      border: 1.5px solid rgba(255, 157, 0, 0.85);
+      color: #ff9d00;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 3px;
+      margin-bottom: 16px;
+      background-color: rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .hero-badge:hover { transform: scale(1.05); }
+    .hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 58px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.12;
+      letter-spacing: 0.3px;
+      margin-bottom: 18px;
+    }
+    .hero-desc {
+      color: #ffffff;
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 720px;
+      margin-bottom: 26px;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 16px; }
+    .btn-hero-primary {
+      background-color: #f7a600;
+      color: #ffffff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .btn-hero-primary:hover { background-color: #e68d00; transform: scale(1.05); }
+    .btn-hero-secondary {
+      background-color: rgba(0, 0, 0, 0.4);
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      color: #ffffff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+    }
+    .btn-hero-secondary:hover { border-color: #ff9d00; background-color: rgba(255, 157, 0, 0.2); transform: scale(1.05); }
+
+    /* CAROUSEL CONTROLS */
+    .carousel-controls {
+      position: absolute;
+      bottom: 30px;
+      right: 4%;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .carousel-indicators { display: flex; gap: 8px; align-items: center; }
+    .indicator-line {
+      width: 45px;
+      height: 3px;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+    .indicator-line .fill {
+      position: absolute;
+      top: 0; left: 0; height: 100%; width: 0%;
+      background-color: #ff9d00;
+    }
+    .indicator-line.active .fill { animation: fillProgress 6s linear forwards; }
+    @keyframes fillProgress { 0% { width: 0%; } 100% { width: 100%; } }
+    .carousel-arrows { display: flex; gap: 10px; }
+    .carousel-arrow-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      background-color: rgba(0,0,0,0.3);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .carousel-arrow-btn:hover { border-color: #ff9d00; background-color: rgba(255, 157, 0, 0.3); color: #ff9d00; transform: scale(1.1); }
+    .carousel-arrow-btn svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+
+    /* STATS RIBBON */
+    .stats-ribbon { 
+      background-color: #f7a600; 
+      width: 100%; 
+      position: relative; 
+      z-index: 10; 
+    }
+    .stats-container { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-box { padding: 26px 20px; text-align: center; border-right: 1px solid rgba(255, 255, 255, 0.25); color: #ffffff; transition: transform 0.3s ease; }
+    .stat-box:hover { transform: scale(1.05); background-color: rgba(0,0,0,0.05); }
+    .stat-box:last-child { border-right: none; }
+    .stat-number { font-family: 'Oswald', sans-serif; font-size: 36px; font-weight: 700; line-height: 1.1; margin-bottom: 4px; }
+    .stat-number .counter { font-size: 48px; font-weight: 700; }
+    .stat-number span { font-size: 22px; font-weight: 600; }
+    .stat-label { font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* ============================================================
+        ADANI-STYLE LEADER / FOUNDER QUOTE SECTION (MAXIMIZED HEIGHT 100vh)
+    ============================================================ */
+    .leader-thought-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background-color: #1c1000;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      z-index: 10;
+    }
+    .leader-thought-grid {
+      display: grid;
+      grid-template-columns: 42% 58%;
+      width: 100%;
+      min-height: 100vh;
+      align-items: center;
+    }
+    .leader-image-wrapper {
+      position: relative;
+      height: 100%;
+      min-height: 100vh;
+      background-color: #110900;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .leader-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.5s ease;
+    }
+    .leader-image-wrapper img:hover { transform: scale(1.04); }
+    
+    .leader-content-wrapper {
+      padding: 50px 7% 50px 6%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Adani Speech Bubble Box & Pointer Tail Custom Implementation */
+    .quote-container {
+      position: relative;
+      background: transparent;
+      padding-bottom: 35px;
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .speech-bubble {
+      position: relative;
+      font-family: 'Roboto', sans-serif;
+      font-size: 23px;
+      line-height: 1.7;
+      color: #e6e6e6;
+      max-width: 100%;
+      margin: 0 0 35px 0;
+      padding: 42px 48px;
+      background-color: #241400;
+      border: 2px solid #4a2805;
+      border-radius: 8px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.45);
+    }
+
+    .speech-bubble strong {
+      font-weight: 700;
+      color: #ffd200;
+    }
+
+    .opening-quote {
+      font-size: 55px;
+      position: absolute;
+      left: 14px;
+      top: 10px;
+      line-height: 1;
+      color: #ff9d00;
+    }
+
+    .closing-quote {
+      font-size: 55px;
+      line-height: 0;
+      position: relative;
+      top: 15px;
+      margin-left: 2px;
+      color: #ff9d00;
+    }
+
+    .speech-bubble::before, 
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -22px; 
+      left: 50%;
+      transform: translateX(-50%);
+      border-style: solid;
+    }
+
+    .speech-bubble::before {
+      border-width: 22px 14px 0 14px;
+      border-color: #4a2805 transparent transparent transparent;
+      z-index: 1;
+    }
+
+    .speech-bubble::after {
+      border-width: 20px 12px 0 12px;
+      border-color: #241400 transparent transparent transparent;
+      bottom: -20px;
+      z-index: 2;
+    }
+
+    .adani-author-area {
+      padding-left: 15px;
+    }
+    .adani-author-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .adani-author-title {
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      color: #b5a695;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 22px;
+    }
+
+    .adani-profile-btn {
+      background-color: transparent;
+      border: 1.5px solid #ff9d00;
+      color: #ff9d00;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 4px;
+      transition: all 0.25s ease;
+      display: inline-block;
+    }
+    .adani-profile-btn:hover {
+      background-color: #ff9d00;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 992px) {
+      .leader-thought-grid { grid-template-columns: 1fr; }
+      .leader-image-wrapper { min-height: 400px; }
+      .leader-thought-section { min-height: auto; }
+      .leader-content-wrapper { padding: 40px 5%; align-items: flex-start; }
+    }
+
+    /* ============================================================
+        OUR BUSINESSES SECTION
+    ============================================================ */
+    .our-businesses-section {
+      position: relative;
+      width: 100%;
+      min-height: calc(100vh - 90px);
+      height: 100vh;
+      background-color: #170d00;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 95px 6%;
+      z-index: 10;
+    }
+
+    .biz-bg-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.06);
+      transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 1;
+      filter: brightness(1.1) contrast(1.05);
+    }
+    .biz-bg-layer.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .biz-dark-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(14, 7, 0, 0.55) 0%, rgba(14, 7, 0, 0.25) 45%, rgba(14, 7, 0, 0.05) 100%),
+                linear-gradient(to top, rgba(14, 7, 0, 0.2) 0%, transparent 30%);
+      z-index: 2;
+    }
+
+    .biz-container {
+      position: relative;
+      z-index: 3;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .biz-content-col {
+      max-width: 680px;
+    }
+    
+    .biz-tag {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: #ffd200;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      margin-top: -30px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+    .biz-tag .diamond {
+      font-size: 15px;
+      color: #ff9d00;
+    }
+
+    .biz-pane {
+      display: none;
+      animation: bizFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .biz-pane.active {
+      display: block;
+    }
+
+    @keyframes bizFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .biz-title {
+      font-family: 'Cinzel', 'Georgia', serif;
+      font-size: 64px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+    .biz-desc-bold {
+      font-family: 'Roboto', sans-serif;
+      font-size: 17.5px;
+      color: #f7ede3;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+    .biz-desc-sub {
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      color: #bfaea0;
+      line-height: 1.75;
+    }
+
+    .biz-nav-col {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .biz-nav-list {
+      list-style: none;
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .biz-nav-item {
+      position: relative;
+      padding: 22px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+    }
+    .biz-nav-item:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .biz-nav-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 15.5px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: rgba(255, 255, 255, 0.75);
+      text-transform: uppercase;
+      transition: color 0.3s ease, transform 0.3s ease;
+      z-index: 2;
+    }
+
+    .biz-nav-item.active {
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      border-bottom: 3.5px solid #f7a600;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+      margin: 8px 0;
+      border-radius: 4px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+    .biz-nav-item.active .biz-nav-text {
+      color: #ffffff;
+      font-weight: 700;
+      transform: translateX(6px);
+    }
+    .biz-nav-item:hover .biz-nav-text {
+      color: #f7a600;
+    }
+
+    @media (max-width: 992px) {
+      .our-businesses-section {
+        height: auto;
+        min-height: auto;
+        padding: 85px 5%;
+      }
+      .biz-container {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+      .biz-nav-col {
+        justify-content: flex-start;
+      }
+      .biz-nav-list {
+        max-width: 100%;
+      }
+      .biz-title {
+        font-size: 46px;
+      }
+    }
+
+    /* ============================================================
+        WHAT WE DO SECTION
+    ============================================================ */
+    .what-we-do-section { 
+      background: linear-gradient(135deg, #2e1a00 0%, #1f1100 100%); 
+      padding: 40px 4%; 
+      position: relative; 
+      z-index: 10; 
+      overflow: hidden;
+    }
+
+    .what-we-do-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 157, 0, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .what-we-do-section::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 210, 0, 0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .what-we-do-container { 
+      max-width: 1240px; 
+      margin: 0 auto; 
+      position: relative;
+      z-index: 2;
+    }
+
+    .what-we-do-header { 
+      margin-bottom: 35px; 
+      max-width: 700px; 
+    }
+
+    .what-we-do-tag { 
+      font-family: 'Oswald', sans-serif; 
+      font-size: 13px; 
+      font-weight: 700; 
+      color: #ff9d00; 
+      letter-spacing: 3px; 
+      text-transform: uppercase; 
+      display: inline-block; 
+      margin-bottom: 10px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .what-we-do-tag::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 2px;
+      background-color: #ff9d00;
+    }
+
+    .what-we-do-title { 
+      font-family: 'Oswald', sans-serif; 
+      font-size: 44px; 
+      font-weight: 700; 
+      color: #ffffff; 
+      line-height: 1.15; 
+      letter-spacing: 0.5px;
+    }
+
+    .solutions-grid { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 28px;
+    }
+
+    .solution-card { 
+      padding: 45px 40px; 
+      background: linear-gradient(145deg, rgba(36, 20, 0, 0.85) 0%, rgba(20, 11, 0, 0.95) 100%);
+      border: 1px solid rgba(255, 157, 0, 0.15);
+      border-radius: 8px; 
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .solution-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ff9d00, transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .solution-card:hover::before {
+      opacity: 1;
+    }
+
+    .solution-card:hover { 
+      transform: translateY(-6px); 
+      border-color: rgba(255, 157, 0, 0.4);
+      box-shadow: 0 20px 45px rgba(255, 157, 0, 0.12);
+      background: linear-gradient(145deg, rgba(42, 23, 2, 0.95) 0%, rgba(26, 14, 0, 0.98) 100%); 
+      z-index: 2; 
+    }
+
+    .solution-title-wrapper { 
+      display: flex; 
+      align-items: center; 
+      margin-bottom: 16px; 
+      gap: 14px; 
+    }
+
+    .solution-bar { 
+      width: 4px; 
+      height: 24px; 
+      background: linear-gradient(to bottom, #ff9d00, #ffd200); 
+      border-radius: 2px; 
+      flex-shrink: 0; 
+      box-shadow: 0 0 10px rgba(255, 157, 0, 0.5);
+    }
+
+    .solution-title { 
+      font-family: 'Oswald', sans-serif; 
+      font-size: 22px; 
+      font-weight: 700; 
+      color: #ffffff; 
+      letter-spacing: 0.5px;
+    }
+
+    .solution-desc { 
+      color: #b5a695; 
+      font-size: 14.5px; 
+      line-height: 1.75; 
+      padding-left: 18px; 
+      font-family: 'Roboto', sans-serif;
+    }
+
+    @media (max-width: 992px) {
+      .solutions-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .what-we-do-title {
+        font-size: 36px;
+      }
+    }
+
+    /* ============================================================
+        OUR IMPACT / SUSTAINABILITY / INNOVATION SECTION 
+    ============================================================ */
+    .our-impact-section {
+      position: relative;
+      width: 100%;
+      min-height: auto;
+      background-color: #190f00;
+      display: flex;
+      align-items: center;
+      padding: 40px 4%;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    .impact-container {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .tab-sidebar {
+      display: flex;
+      justify-content: flex-start;
+      gap: 60px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 15px;
+      width: 100%;
+    }
+
+    .tab-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      cursor: pointer;
+      min-width: 220px;
+    }
+
+    .tab-line {
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.25);
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .tab-item.active .tab-line {
+      background-color: #ff9d00;
+      height: 3px;
+    }
+
+    .tab-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #b5a695;
+      transition: color 0.3s ease, opacity 0.3s ease;
+      opacity: 0.6;
+    }
+
+    .tab-item:hover .tab-label,
+    .tab-item.active .tab-label {
+      color: #ffffff;
+      opacity: 1;
+    }
+
+    .content-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 70px;
+    }
+
+    .text-column {
+      flex: 1.1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .impact-pane {
+      display: none;
+      animation: impactFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .impact-pane.active {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    @keyframes impactFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-title {
+      font-family: 'Cinzel', 'Georgia', serif;
+      font-size: 52px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    /* Paragraph Line-by-Line Hover Effect Styling for Sustainability, Innovation, and Our Impact Sections */
+    .hover-line-effect {
+      display: block;
+      transition: color 0.3s ease, transform 0.3s ease;
+      cursor: default;
+    }
+    .hover-line-effect:hover {
+      color: #ff9d00;
+      transform: translateX(4px);
+    }
+
+    .description-text {
+      font-family: 'Roboto', sans-serif;
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: #d1c4b2;
+      font-weight: 300;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .image-column {
+      flex: 1.2;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .impact-img-layer {
+      display: none;
+      width: 100%;
+      max-width: 650px;
+      height: 480px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+      animation: impactFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .impact-img-layer.active {
+      display: block;
+    }
+
+    .showcase-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .showcase-image:hover {
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 992px) {
+      .our-impact-section {
+        padding: 30px 5%;
+      }
+      .content-container {
+        flex-direction: column;
+        gap: 35px;
+      }
+      .tab-sidebar {
+        width: 100%;
+        overflow-x: auto;
+        gap: 25px;
+      }
+      .tab-item {
+        min-width: 140px;
+      }
+      .image-column {
+        justify-content: center;
+        width: 100%;
+      }
+      .impact-img-layer {
+        max-width: 100%;
+        height: 340px;
+      }
+      .section-title {
+        font-size: 38px;
+      }
+    }
+
+    /* ============================================================
+        JOIN US SECTION (MATCHED WITH VAIJANTI THEME)
+    ============================================================ */
+    .join-section {
+      position: relative;
+      width: 100%;
+      background-color: #150c00;
+      padding: 85px 4%;
+      z-index: 10;
+    }
+
+    .join-container {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .join-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 35px;
+    }
+
+    .header-content h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .header-content p {
+      font-size: 1.05rem;
+      color: #b5a695;
+      max-width: 620px;
+      line-height: 1.6;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .know-more-btn {
+      background: #241400;
+      border: 1px solid #4a2805;
+      padding: 12px 28px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border-radius: 6px;
+      color: #ff9d00;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .know-more-btn:hover {
+      background: #ff9d00;
+      color: #ffffff;
+      border-color: #ff9d00;
+    }
+
+    .cards-grid {
+      display: flex;
+      gap: 16px;
+      height: 520px;
+      width: 100%;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      flex: 1; 
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      transition: flex 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      display: block;
+    }
+
+    .cards-grid:hover .card {
+      flex: 0.88;
+    }
+
+    .cards-grid .card:hover {
+      flex: 1.35;
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.85);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.03);
+      filter: brightness(1.02);
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top, 
+        rgba(21, 12, 0, 0.95) 0%, 
+        rgba(21, 12, 0, 0.4) 50%, 
+        rgba(21, 12, 0, 0) 80%
+      );
+      z-index: 1;
+    }
+
+    .card-content {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      z-index: 2;
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      white-space: nowrap;
+    }
+
+    .card-text {
+      position: relative;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+    }
+
+    .arrow-wrapper {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      background: rgba(255, 157, 0, 0.2);
+      border: 1px solid rgba(255, 157, 0, 0.4);
+      backdrop-filter: blur(4px);
+      border-radius: 50%;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+      flex-shrink: 0;
+      color: #ff9d00;
+    }
+
+    .arrow {
+      font-size: 1.1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .arrow-wrapper {
+      background: #ff9d00;
+      color: #ffffff;
+      border-color: #ff9d00;
+    }
+
+    .card:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    @media (max-width: 1024px) {
+      .cards-grid {
+        flex-direction: column;
+        height: auto;
+      }
+      .cards-grid:hover .card {
+        flex: 1;
+      }
+      .cards-grid .card:hover {
+        flex: 1;
+        transform: none;
+      }
+      .card {
+        height: 300px;
+      }
+      .join-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+    }
+
+    /* FOR INVESTORS SECTION */
+    .investor-section {
+      position: relative;
+      width: 100%;
+      min-height: 560px;
+      background-image: url('solar for home page.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(1.2) contrast(1.05);
+      display: flex;
+      align-items: center;
+      padding: 85px 6%;
+      overflow: hidden;
+    }
+    .investor-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to right, rgba(25, 15, 0, 0.85) 0%, rgba(25, 15, 0, 0.5) 50%, rgba(25, 15, 0, 0.15) 100%);
+      z-index: 1;
+    }
+    .investor-content { position: relative; max-width: 620px; z-index: 3; transition: transform 0.4s ease; }
+    .investor-content:hover { transform: scale(1.02); }
+    .investor-tag { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 700; color: #ff9d00; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 12px; display: block; }
+    .investor-title { font-family: 'Oswald', sans-serif; font-size: 44px; font-weight: 700; color: #ffffff; line-height: 1.15; margin-bottom: 18px; text-shadow: 0 2px 6px rgba(0,0,0,0.7); }
+    .investor-desc { color: #ffffff; font-size: 14.5px; line-height: 1.65; margin-bottom: 24px; text-shadow: 0 1px 4px rgba(0,0,0,0.7); }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+    .feature-item { display: flex; align-items: center; gap: 12px; color: #ffffff; font-size: 13.5px; text-shadow: 0 1px 3px rgba(0,0,0,0.7); transition: transform 0.2s ease; }
+    .feature-item:hover { transform: translateX(6px); }
+    .feature-item svg { width: 16px; height: 16px; stroke: #ff9d00; stroke-width: 2.2; fill: none; flex-shrink: 0; }
+    
+    .investor-btn {
+      background-color: #f0a400; 
+      color: #ffffff; 
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px; 
+      font-weight: 700; 
+      text-transform: uppercase; 
+      letter-spacing: 1px;
+      text-decoration: none; 
+      padding: 13px 26px; 
+      border-radius: 4px; 
+      display: inline-flex;
+      align-items: center; 
+      gap: 8px; 
+      cursor: pointer; 
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .investor-btn:hover { background-color: #d69200; transform: scale(1.05); }
+
+    /* FOOTER */
+    .cta-banner {
+      background-color: #241400;
+      padding: 60px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative; z-index: 10;
+    }
+    .cta-content h2 { font-family: 'Oswald', sans-serif; font-size: 36px; font-weight: 700; color: #ffffff; margin-bottom: 10px; }
+    .cta-content p { color: #a89481; font-size: 15px; }
+    .cta-actions { display: flex; gap: 16px; }
+    .btn-orange {
+      background-color: #f7a600; color: #ffffff; font-family: 'Oswald', sans-serif;
+      font-size: 14px; font-weight: 700; text-transform: uppercase; text-decoration: none;
+      padding: 13px 26px; border-radius: 4px; display: inline-flex; align-items: center; cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .btn-orange:hover { background-color: #e68d00; transform: scale(1.05); }
+    .btn-outline {
+      background-color: transparent; color: #ffffff; font-family: 'Oswald', sans-serif;
+      font-size: 14px; font-weight: 700; text-transform: uppercase; text-decoration: none;
+      padding: 13px 26px; border-radius: 4px; border: 1.5px solid #4a2805; display: inline-flex; align-items: center; cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { background-color: rgba(255,255,255,0.05); border-color: #ff9d00; transform: scale(1.05); }
+    
+    .yellow-strip {
+      background-color: #f7a600; color: #ffffff; text-align: center; padding: 16px 0;
+      font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      position: relative; z-index: 10;
+    }
+    .footer-main {
+      background-color: #190f00; padding: 70px 6% 60px 6%; display: grid; grid-template-columns: 2fr 1fr 1.2fr; gap: 60px;
+      position: relative; z-index: 10;
+    }
+    .brand-header { display: flex; align-items: center; gap: 15px; margin-bottom: 22px; }
+    .brand-icon {
+      width: 38px; height: 38px; background-color: #f7a600; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff;
+      transition: transform 0.3s ease;
+    }
+    .brand-header:hover .brand-icon { transform: rotate(360deg) scale(1.1); }
+    .brand-title h3 { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; color: #ffffff; }
+    .brand-title span { font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 600; color: #b5a695; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-top: 4px; }
+    .brand-desc { color: #9d8b7a; font-size: 14px; line-height: 1.6; max-width: 440px; margin-bottom: 25px; }
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; color: #9d8b7a; font-size: 14px; transition: transform 0.2s ease; }
+    .contact-item:hover { transform: translateX(5px); color: #ff9d00; }
+    .contact-item svg { width: 15px; height: 15px; stroke: #f7a600; fill: none; stroke-width: 2; flex-shrink: 0; }
+    .contact-item a { color: #9d8b7a; text-decoration: none; transition: color 0.2s; }
+    .contact-item a:hover { color: #ff9d00; }
+    .footer-col h4 { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 24px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links li a { color: #9d8b7a; text-decoration: none; font-size: 14px; transition: color 0.2s, padding-left 0.2s; display: inline-block; }
+    .footer-links li a:hover { color: #ff9d00; padding-left: 6px; }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 24px 6%; display: flex; justify-content: space-between; align-items: center; color: #8c735c; font-size: 13px; background-color: #190f00; position: relative; z-index: 10; }
+  </style>
+</head>
+<body>
+
+  <!-- FIXED HEADER -->
+  <header>
+    <nav class="navbar">
+      <a href="./index.html" class="brand-logo">
+        <span class="logo-orange">Vaijanti</span>
+        <span class="logo-divider">|</span>
+        <span class="logo-yellow">RENEWABLE</span>
+      </a>
+
+      <ul class="nav-links">
+        <li class="nav-item active-tab"><a href="./index.html" class="nav-link active">HOME</a></li>
+        
+        <li class="nav-item" id="projectsNavItem">
+          <span class="nav-link">
+            PROJECTS <span class="dropdown-arrow">&#9662;</span>
+          </span>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="./projects.html#upcoming">Upcoming Projects</a></li>
+            <li class="dropdown-item"><a href="./projects.html#running">Running Projects</a></li>
+            <li class="dropdown-item"><a href="./projects.html#completed">Completed Projects</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="./about.html" class="nav-link">
+            ABOUT <span class="dropdown-arrow">&#9662;</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="./about.html#company">Vaijanti Group</a></li>
+            <li class="dropdown-item"><a href="./about.html#chairman">Chairman's Office</a></li>
+            <li class="dropdown-item"><a href="./about.html#thoughts">From the Leader</a></li>
+            <li class="dropdown-item"><a href="./about.html#leadership">Leadership</a></li>
+            <li class="dropdown-item"><a href="./about.html#journey">Our Journey</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a href="./electricity-sales.html" class="nav-link">ELECTRICITY SALES</a></li>
+        <li class="nav-item"><a href="./investors.html" class="nav-link">INVESTORS</a></li>
+        <li class="nav-item"><a href="./contact.html" class="nav-link">CONTACT</a></li>
+      </ul>
+
+      <div class="header-right-actions">
+        <div class="search-container" id="searchContainer">
+          <input type="text" class="search-input" id="searchInput" placeholder="Search projects, solar..." />
+          <button class="search-toggle-btn" id="searchToggleBtn" aria-label="Toggle Search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+          <button class="search-submit-icon" id="searchSubmitBtn" aria-label="Submit Search">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="#ff9d00" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+        <a href="./contact.html" class="cta-btn">GET IN TOUCH</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- FLOATING INTERACTIVE CONTACT WIDGETS -->
+  <div class="floating-contact-widgets">
+    <a href="tel:+918950444885" class="contact-pulse-btn phone-btn" aria-label="Call Us (+91 8950444885)">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    </a>
+
+    <a href="https://wa.me/918950444885" target="_blank" class="contact-pulse-btn whatsapp-btn" aria-label="WhatsApp Us (+91 8950444885)">
+      <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+  </div>
+
+  <!-- FLOATING SOCIAL MEDIA SIDEBAR -->
+  <div class="social-sidebar">
+    <a href="https://instagram.com" target="_blank" class="social-item instagram">
+      <div class="social-icon-circle">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="#ff2a2a" stroke-width="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="#ff2a2a" stroke-width="2"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#ff2a2a" stroke-width="2" stroke-linecap="round"></line></svg>
+      </div>
+      <span class="social-label">Instagram</span>
+    </a>
+
+    <a href="https://facebook.com" target="_blank" class="social-item facebook">
+      <div class="social-icon-circle">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="#2b82e4"></path></svg>
+      </div>
+      <span class="social-label">Facebook</span>
+    </a>
+
+    <a href="https://twitter.com" target="_blank" class="social-item twitter">
+      <div class="social-icon-circle">
+        <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" fill="#3bc1ed"></path></svg>
+      </div>
+      <span class="social-label">Twitter</span>
+    </a>
+  </div>
+
+  <!-- SCROLL-TO-TOP BUTTON -->
+  <div class="scroll-to-top" id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="heroSection">
+      <div class="hero-carousel">
+        <img class="carousel-slide active" src="industries.jpg.jpg" alt="Industries">
+        <img class="carousel-slide" src="solar.jpg.jpg" alt="Solar Power Project">
+        <img class="carousel-slide" src="CBG real pant.webp" alt="CBG Real Plant">
+        <img class="carousel-slide" src="mines.jpg.jpg" alt="Mining Operations">
+        <img class="carousel-slide" src="transmission.png" alt="Transmission Infrastructure">
+      </div>
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge reveal-from-bottom">NATION BUILDING IS OUR GOAL</div>
+          <h1 class="hero-title word-split-target" id="heroMainTitle">Powering India's Future from Vaijanti Enterprises</h1>
+          <p class="hero-desc word-split-target" id="heroMainDesc">Vaijanti Enterprises develops and operates large scale projects across Pan India, creates opportunities for India youth, industries, municipalities, and for nation.</p>
+          <div class="hero-actions reveal-from-bottom">
+            <a href="./projects.html#upcoming" class="btn-hero-primary">VIEW PROJECTS &rarr;</a>
+            <a href="./contact.html" class="btn-hero-secondary">PARTNER WITH US</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <div class="carousel-indicators" id="carouselIndicators">
+          <div class="indicator-line active" onclick="currentSlide(0)"><div class="fill"></div></div>
+          <div class="indicator-line" onclick="currentSlide(1)"><div class="fill"></div></div>
+          <div class="indicator-line" onclick="currentSlide(2)"><div class="fill"></div></div>
+          <div class="indicator-line" onclick="currentSlide(3)"><div class="fill"></div></div>
+          <div class="indicator-line" onclick="currentSlide(4)"><div class="fill"></div></div>
+        </div>
+        <div class="carousel-arrows">
+          <button class="carousel-arrow-btn" onclick="prevSlide()" aria-label="Previous Slide">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="carousel-arrow-btn" onclick="nextSlide()" aria-label="Next Slide">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS RIBBON -->
+    <section class="stats-ribbon reveal-from-bottom" id="statsRibbon">
+      <div class="stats-container">
+        <div class="stat-box"><div class="stat-number"><span class="counter" data-target="20">0</span>+ <span>MW</span></div><div class="stat-label">TOTAL CAPACITY</div></div>
+        <div class="stat-box"><div class="stat-number"><span class="counter" data-target="10">0</span></div><div class="stat-label">PROJECTS COMPLETE</div></div>
+        <div class="stat-box"><div class="stat-number"><span class="counter" data-target="1" data-decimals="0">0</span>M+</div><div class="stat-label">TON CO2 EMISSION</div></div>
+        <div class="stat-box"><div class="stat-number"><span class="counter" data-target="2">0</span></div><div class="stat-label">STATES COVERED</div></div>
+      </div>
+    </section>
+
+    <!-- ADANI-STYLE LEADER / FOUNDER QUOTE SECTION -->
+    <section class="leader-thought-section">
+      <div class="leader-thought-grid">
+        <div class="leader-image-wrapper reveal-left">
+          <img src="ChatGPT Image Aug 16, 2026, 04_16_28 AM.png" alt="Kavyansh Rana">
+        </div>
+        <div class="leader-content-wrapper reveal-right">
+          <div class="quote-container">
+            <blockquote class="speech-bubble">
+              <span class="opening-quote">“</span>True <strong>power</strong> does not lie in wealth or balance sheets; it lies in <strong>uplifting lives</strong> and driving the nation forward. <strong>Enterprise</strong> is not merely a pursuit of profit, but a <strong>sacred duty</strong> to serve our country and build its <strong>self-reliant future</strong>. When purpose leads the work, everything else falls into place.<span class="closing-quote">”</span>
+            </blockquote>
+            <div class="adani-author-area">
+              <h3 class="adani-author-name">Kavyansh Rana</h3>
+              <p class="adani-author-title">Founder &amp; Leader, Vaijanti Green Energy</p>
+              <a href="./about.html" class="adani-profile-btn">View Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR BUSINESSES SECTION -->
+    <section class="our-businesses-section" id="ourBusinessesSection">
+      <div class="biz-bg-layer active" id="bizBg-renewable" style="background-image: url('rewnable.png');"></div>
+      <div class="biz-bg-layer" id="bizBg-highways" style="background-image: url('Highway.png');"></div>
+      <div class="biz-bg-layer" id="bizBg-industries" style="background-image: url('industries.png');"></div>
+      <div class="biz-bg-layer" id="bizBg-infrastructure" style="background-image: url('real estate.png');"></div>
+      
+      <div class="biz-dark-overlay"></div>
+
+      <div class="biz-container">
+        <div class="biz-content-col reveal-left">
+          <div class="biz-tag">
+            <span class="diamond">&#9670;</span> OUR BUSINESSES
+          </div>
+          
+          <div class="biz-pane active" id="bizPane-renewable">
+            <h2 class="biz-title word-split-target">Renewable Energy</h2>
+            <p class="biz-desc-bold">
+              Empowering India's green transition through utility-scale solar installations, Compressed Bio-Gas (CBG), and next-generation clean power generation.
+            </p>
+            <p class="biz-desc-sub">
+              Combining solar engineering excellence with decentralized bio-fuel infrastructure to deliver dependable, clean, and sustainable energy grids nationwide.
+            </p>
+          </div>
+
+          <div class="biz-pane" id="bizPane-highways">
+            <h2 class="biz-title word-split-target">Roads &amp; Highways</h2>
+            <p class="biz-desc-bold">
+              Engineering resilient transportation corridors and high-speed highway networks that connect vital commercial corridors.
+            </p>
+            <p class="biz-desc-sub">
+              Delivering modern civil engineering, robust pavement technology, and sustainable arterial connectivity built to withstand heavy industrial transport and rapid urbanization.
+            </p>
+          </div>
+
+          <div class="biz-pane" id="bizPane-industries">
+            <h2 class="biz-title word-split-target">Industries</h2>
+            <p class="biz-desc-bold">
+              Driving industrial modernization through captive energy integration, heavy manufacturing support, and resource efficiency.
+            </p>
+            <p class="biz-desc-sub">
+              Enabling regional manufacturers with steady, high-capacity utility infrastructure and sustainable energy solutions that streamline production and reduce operational overhead.
+            </p>
+          </div>
+
+          <div class="biz-pane" id="bizPane-infrastructure">
+            <h2 class="biz-title word-split-target">Infrastructure</h2>
+            <p class="biz-desc-bold">
+              Building the backbone of modern economic expansion with durable, future-ready infrastructure developments.
+            </p>
+            <p class="biz-desc-sub">
+              From smart industrial estates and bulk utility parks to large-scale civil engineering projects, we build sustainable infrastructure for national progress.
+            </p>
+          </div>
+        </div>
+
+        <div class="biz-nav-col reveal-right">
+          <ul class="biz-nav-list">
+            <li class="biz-nav-item active" data-target="renewable">
+              <span class="biz-nav-text">RENEWABLE ENERGY</span>
+            </li>
+            <li class="biz-nav-item" data-target="highways">
+              <span class="biz-nav-text">ROADS &amp; HIGHWAYS</span>
+            </li>
+            <li class="biz-nav-item" data-target="industries">
+              <span class="biz-nav-text">INDUSTRIES</span>
+            </li>
+            <li class="biz-nav-item" data-target="infrastructure">
+              <span class="biz-nav-text">INFRASTRUCTURE</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE DO SECTION -->
+    <section class="what-we-do-section">
+      <div class="what-we-do-container">
+        <div class="what-we-do-header reveal-left">
+          <span class="what-we-do-tag">WHAT WE DO</span>
+          <h2 class="what-we-do-title word-split-target">Full-Spectrum Solutions</h2>
+        </div>
+        <div class="solutions-grid">
+          <div class="solution-card solution-card-left">
+            <div class="solution-title-wrapper"><div class="solution-bar"></div><h3 class="solution-title">Solar Power Plant Development</h3></div>
+            <p class="solution-desc">End-to-end development of utility-scale solar power plants from land acquisition to commissioning.</p>
+          </div>
+          <div class="solution-card solution-card-right">
+            <div class="solution-title-wrapper"><div class="solution-bar"></div><h3 class="solution-title">Infrastructure Development</h3></div>
+            <p class="solution-desc">We built India's infrastructure through long-term agreements or contracts with government.</p>
+          </div>
+          <div class="solution-card solution-card-left">
+            <div class="solution-title-wrapper"><div class="solution-bar"></div><h3 class="solution-title">Government &amp; Municipal Projects</h3></div>
+            <p class="solution-desc">Partnering with state governments and municipalities to power public infrastructure.</p>
+          </div>
+          <div class="solution-card solution-card-right">
+            <div class="solution-title-wrapper"><div class="solution-bar"></div><h3 class="solution-title">Industries Development</h3></div>
+            <p class="solution-desc">Built India's larger manufacturing plants and large-scale commercial facilities.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR IMPACT / SUSTAINABILITY / INNOVATION SECTION -->
+    <section class="our-impact-section">
+      <div class="impact-container">
+        <!-- Top Left-Aligned Tabs Navigation with Extended Lines -->
+        <nav class="tab-sidebar">
+          <div class="tab-item active" data-tab="sustainability">
+            <div class="tab-line"></div>
+            <span class="tab-label">Sustainability</span>
+          </div>
+          <div class="tab-item" data-tab="innovation">
+            <div class="tab-line"></div>
+            <span class="tab-label">Innovation</span>
+          </div>
+          <div class="tab-item" data-tab="impact">
+            <div class="tab-line"></div>
+            <span class="tab-label">Our Impact</span>
+          </div>
+        </nav>
+
+        <!-- Centered Grid Content: Left Text & Right Larger Image -->
+        <div class="content-container">
+          <!-- Text Narrative Column with proper vertical alignment & spacing -->
+          <article class="text-column">
+            <!-- Pane 1: Sustainability (Default active with line-by-line hover effect) -->
+            <div class="impact-pane active" id="pane-sustainability">
+              <h2 class="section-title">Corporate Sustainability</h2>
+              <p class="description-text">
+                <span class="hover-line-effect">Our growth strategy is defined by our business acumen and our corporate responsibility.</span>
+                <span class="hover-line-effect">Our commitment to sustainable value-creation demonstrates the principle that we care for our people and our planet.</span>
+              </p>
+              <p class="description-text">
+                <span class="hover-line-effect">Our mission remains to continue growing as a responsible organisation that enriches lives, while striving for economic and ecological sustainability.</span>
+                <span class="hover-line-effect">We are on the path to transforming our legacy businesses to net-zero carbon operations, while ensuring sustainability through circular materials.</span>
+                <span class="hover-line-effect">Vaijanti has set an ambitious target to become a net-zero carbon company by 2035.</span>
+              </p>
+            </div>
+
+            <!-- Pane 2: Innovation (With line-by-line hover effect) -->
+            <div class="impact-pane" id="pane-innovation">
+              <h2 class="section-title">Innovation</h2>
+              <p class="description-text">
+                <span class="hover-line-effect">Innovation is a way of life at Vaijanti.</span>
+                <span class="hover-line-effect">Our spectacular growth story is engineered by innovation and the new paradigms we set every single day to create a better future for all.</span>
+              </p>
+              <p class="description-text">
+                <span class="hover-line-effect">Our innovations touch many facets of life in India – be it digital services, transportation, retail, or healthcare.</span>
+                <span class="hover-line-effect">Our bold ambitions for Vaijanti and for India push us to create an innovation agenda that is even bolder, ensuring that the next wave of growth will remain innovation-led.</span>
+                <span class="hover-line-effect">Vaijanti has made significant investments in cutting-edge technologies such as artificial intelligence, blockchain, and Internet of Things (IoT), and has also launched numerous initiatives to drive innovation across its various business units.</span>
+              </p>
+            </div>
+
+            <!-- Pane 3: Our Impact (With line-by-line hover effect) -->
+            <div class="impact-pane" id="pane-impact">
+              <h2 class="section-title">Our Impact</h2>
+              <p class="description-text">
+                <span class="hover-line-effect">At Vaijanti, we are constantly aligning our ambitions with India's dreams.</span>
+                <span class="hover-line-effect">We have generated employment and immense societal value, committed resources and ideas to a digital revolution, built world-class manufacturing assets that produce clean fuels and materials of the future, and created a consumer-focused, integrated ecosystem for India.</span>
+              </p>
+              <p class="description-text">
+                <span class="hover-line-effect">We have also joined forces with the best in the world, to bring the best of the world to India.</span>
+                <span class="hover-line-effect">At Vaijanti, we are on a pursuit of self-reliant, sustainable growth and are stepping up to the challenge of taking on the future and making it India's own.</span>
+              </p>
+            </div>
+          </article>
+
+          <!-- Visual Showcase Frame with Dynamic Larger Right Image -->
+          <div class="image-column">
+            <div class="impact-img-layer active" id="img-sustainability">
+              <img src="sustanibliity.png" alt="Corporate Sustainability" class="showcase-image">
+            </div>
+            <div class="impact-img-layer" id="img-innovation">
+              <img src="AI inovation.png" alt="Innovation Technology" class="showcase-image">
+            </div>
+            <div class="impact-img-layer" id="img-impact">
+              <img src="Impact.png" alt="Our Impact" class="showcase-image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN US SECTION -->
+    <section class="join-section">
+        <div class="join-container">
+            <!-- Header Section -->
+            <div class="join-header">
+                <div class="header-content">
+                    <h2>Join Us</h2>
+                    <p>We foster a culture where people with a can-do attitude can be a part of our growing team across Vaijanti businesses.</p>
+                </div>
+                <a href="./jobs.html" class="know-more-btn">Know More</a>
+            </div>
+
+            <!-- Cards Section with 4 Cards & Custom User Images -->
+            <div class="cards-grid">
+                <!-- Card 1: Job Opportunities -->
+                <a href="./jobs.html" class="card">
+                    <img src="job.jpg" alt="Job Opportunities">
+                    <div class="card-content">
+                        <span class="card-text">Job Opportunities</span>
+                        <div class="arrow-wrapper">
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2: Our Values -->
+                <a href="./values.html" class="card">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Our Values">
+                    <div class="card-content">
+                        <span class="card-text">Our Values</span>
+                        <div class="arrow-wrapper">
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3: Life at Vaijanti -->
+                <a href="./life.html" class="card">
+                    <img src="employee talking.jpg" alt="Life at Vaijanti">
+                    <div class="card-content">
+                        <span class="card-text">Life at Vaijanti</span>
+                        <div class="arrow-wrapper">
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 4: Diversity & Inclusion -->
+                <a href="./diversity.html" class="card">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" alt="Diversity & Inclusion">
+                    <div class="card-content">
+                        <span class="card-text">Diversity & Inclusion</span>
+                        <div class="arrow-wrapper">
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOR INVESTORS SECTION -->
+    <section class="investor-section">
+      <div class="investor-overlay"></div>
+      <div class="investor-content reveal-left">
+        <span class="investor-tag">FOR INVESTORS</span>
+        <h2 class="investor-title word-split-target">Invest in India's Future</h2>
+        <p class="investor-desc">India renewable energy sector and infrastructure sector is growing rapidly. Vajanti Enterprise offer industrial investors a proven operational track record, agreement-backed revenue and high-yield assets.</p>
+        <ul class="feature-list">
+          <li class="feature-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8.5 12.5l2.5 2.5 4.5-5"></path></svg><span>Long-term contracts with government and industries client</span></li>
+          <li class="feature-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8.5 12.5l2.5 2.5 4.5-5"></path></svg><span>good experience in building infrastructure for nation building</span></li>
+        </ul>
+        <a href="./investors.html" class="investor-btn"><span>EXPLORE INVESTMENT OPPORTUNITIES &rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="cta-banner reveal-from-bottom">
+      <div class="cta-content">
+        <h2>Ready to invest in India with Vaijanti Enterprises?</h2>
+        <p>Talk to our team about partnership agreement with us for your industry or municipality.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="./electricity-sales.html" class="btn-orange">ELECTRICITY SALES &rarr;</a>
+        <a href="./contact.html" class="btn-outline">CONTACT US</a>
+      </div>
+    </div>
+    <div class="yellow-strip">HARVESTING SUSTAINABILITY — POWERING INDIA'S TOMORROW</div>
+    <div class="footer-main">
+      <div class="reveal-left">
+        <div class="brand-header">
+          <div class="brand-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <div class="brand-title"><h3>VAIJANTI GREEN ENERGY</h3><span>SOLAR POWER DEVELOPMENT</span></div>
+        </div>
+        <p class="brand-desc">Vaijanti Green Energy is a leading solar power plant developer and electricity supplier based in Rajasthan. We establish large-scale solar projects and deliver clean, affordable power to industries and governments across India.</p>
+        <ul class="contact-list">
+          <li class="contact-item"><svg viewBox="0 0 24 24"><path d="M12 21s-8-7.5-8-12a8 8 0 1 1 16 0c0 4.5-8 12-8 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg><span>Vaijanti Group, Bahadurgarh, Haryana — 124507, India</span></li>
+          <li class="contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><a href="tel:+918950444885">+91 8950444885</a></li>
+          <li class="contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><a href="mailto:contact@vaijantigroup.com">contact@vaijantigroup.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col reveal-from-bottom">
+        <h4>QUICK LINKS</h4>
+        <ul class="footer-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./projects.html#upcoming">Projects</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./electricity-sales.html">Electricity Sales</a></li>
+          <li><a href="./investors.html">Investors</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col reveal-right">
+        <h4>OUR SERVICES</h4>
+        <ul class="footer-links">
+          <li><a href="./projects.html#running">Solar Power Plant Development</a></li>
+          <li><a href="./electricity-sales.html">Electricity Sales &amp; PPA</a></li>
+          <li><a href="./projects.html#upcoming">Government Solar Projects</a></li>
+          <li><a href="./electricity-sales.html">Industrial Power Supply</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Vaijanti Green Energy. All rights reserved.</div>
+      <div>vaijantigroup.com — Rajasthan, India</div>
+    </div>
+  </footer>
+
+  <!-- CONTROLLER SCRIPT -->
+  <script>
+    const slides = document.querySelectorAll('.hero-carousel .carousel-slide');
+    const indicators = document.querySelectorAll('.carousel-indicators .indicator-line');
+    let currentIndex = 0;
+    let slideInterval;
+    const intervalTime = 6000;
+
+    function showSlide(index) {
+      if (slides.length === 0) return;
+      slides.forEach(slide => slide.classList.remove('active'));
+      indicators.forEach(ind => ind.classList.remove('active'));
+
+      currentIndex = (index + slides.length) % slides.length;
+
+      slides[currentIndex].classList.add('active');
+      if (indicators[currentIndex]) {
+        indicators[currentIndex].classList.add('active');
+      }
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+      resetTimer();
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+      resetTimer();
+    }
+
+    function currentSlide(index) {
+      showSlide(index);
+      resetTimer();
+    }
+
+    function startTimer() {
+      if (slides.length <= 1) return;
+      slideInterval = setInterval(() => {
+        showSlide(currentIndex + 1);
+      }, intervalTime);
+    }
+
+    function resetTimer() {
+      clearInterval(slideInterval);
+      startTimer();
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (slides.length > 0) {
+        showSlide(0);
+        startTimer();
+      }
+
+      // Word-by-Word Text Splitter
+      const wordTargets = document.querySelectorAll('.word-split-target');
+      wordTargets.forEach(el => {
+        const text = el.textContent.trim();
+        const words = text.split(/\s+/);
+        el.innerHTML = words.map((w, i) => `<span class="reveal-word" style="transition-delay: ${i * 0.05}s;">${w}&nbsp;</span>`).join('');
+      });
+
+      setTimeout(() => {
+        document.getElementById('heroMainTitle')?.classList.add('revealed');
+        document.getElementById('heroMainDesc')?.classList.add('revealed');
+      }, 150);
+
+      // Scroll Observer for Entrance Animations
+      const animatedElements = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-from-bottom, .word-split-target, .solution-card-left, .solution-card-right');
+      const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -30px 0px'
+      });
+
+      animatedElements.forEach((el, idx) => {
+        if (el.classList.contains('solution-card-left') || el.classList.contains('solution-card-right')) {
+          el.style.transitionDelay = `${(idx % 2) * 0.15}s`;
+        }
+        scrollObserver.observe(el);
+      });
+
+      // Number Counting Animation on Scroll
+      const counters = document.querySelectorAll('.counter');
+      let animatedCounters = false;
+
+      function runCounters() {
+        counters.forEach(counter => {
+          const target = parseFloat(counter.getAttribute('data-target'));
+          const decimals = parseInt(counter.getAttribute('data-decimals')) || 0;
+          const duration = 2000;
+          const steps = 50;
+          const increment = target / steps;
+          let current = 0;
+          
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              counter.textContent = target.toFixed(decimals);
+              clearInterval(timer);
+            } else {
+              counter.textContent = current.toFixed(decimals);
+            }
+          }, duration / steps);
+        });
+      }
+
+      const statsSection = document.getElementById('statsRibbon');
+      if (statsSection) {
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !animatedCounters) {
+              animatedCounters = true;
+              runCounters();
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        statsObserver.observe(statsSection);
+      }
+
+      // ULTRA-SUBTLE GENTLE MAGNETIC SNAP FOR 'OUR BUSINESSES'
+      const bizSection = document.getElementById('ourBusinessesSection');
+      let isSnapping = false;
+      let snapTimer = null;
+
+      window.addEventListener('scroll', () => {
+        if (!bizSection || isSnapping) return;
+
+        clearTimeout(snapTimer);
+        snapTimer = setTimeout(() => {
+          const rect = bizSection.getBoundingClientRect();
+          const distanceToHeader = rect.top - 90;
+
+          if (Math.abs(distanceToHeader) < 90 && Math.abs(distanceToHeader) > 2) {
+            isSnapping = true;
+            const targetY = window.pageYOffset + rect.top - 90;
+            
+            window.scrollTo({
+              top: targetY,
+              behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+              isSnapping = false;
+            }, 450);
+          }
+        }, 100);
+      }, { passive: true });
+
+      // OUR BUSINESSES TAB CONTROLLER
+      const bizNavItems = document.querySelectorAll('.biz-nav-item');
+      const bizPanes = document.querySelectorAll('.biz-pane');
+      const bizBgs = document.querySelectorAll('.biz-bg-layer');
+
+      function activateBizItem(target) {
+        bizNavItems.forEach(item => {
+          if (item.dataset.target === target) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+
+        bizPanes.forEach(pane => {
+          if (pane.id === `bizPane-${target}`) {
+            pane.classList.add('active');
+            const title = pane.querySelector('.word-split-target');
+            if (title) {
+              title.classList.remove('revealed');
+              void title.offsetWidth;
+              title.classList.add('revealed');
+            }
+          } else {
+            pane.classList.remove('active');
+          }
+        });
+
+        bizBgs.forEach(bg => {
+          if (bg.id === `bizBg-${target}`) {
+            bg.classList.add('active');
+          } else {
+            bg.classList.remove('active');
+          }
+        });
+      }
+
+      bizNavItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          activateBizItem(item.dataset.target);
+        });
+        item.addEventListener('click', () => {
+          activateBizItem(item.dataset.target);
+        });
+      });
+
+      // OUR IMPACT / SUSTAINABILITY / INNOVATION TAB CONTROLLER
+      const impactTabs = document.querySelectorAll('.tab-item');
+      const impactPanes = document.querySelectorAll('.impact-pane');
+      const impactImages = document.querySelectorAll('.impact-img-layer');
+
+      function activateImpactTab(tabTarget) {
+        impactTabs.forEach(item => {
+          if (item.dataset.tab === tabTarget) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+
+        impactPanes.forEach(pane => {
+          if (pane.id === `pane-${tabTarget}`) {
+            pane.classList.add('active');
+          } else {
+            pane.classList.remove('active');
+          }
+        });
+
+        impactImages.forEach(img => {
+          if (img.id === `img-${tabTarget}`) {
+            img.classList.add('active');
+          } else {
+            img.classList.remove('active');
+          }
+        });
+      }
+
+      impactTabs.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          activateImpactTab(item.dataset.tab);
+        });
+        item.addEventListener('click', () => {
+          activateImpactTab(item.dataset.tab);
+        });
+      });
+
+      // Header Dropdown Toggle
+      const projectsNavItem = document.getElementById('projectsNavItem');
+      const projectsParentSpan = projectsNavItem.querySelector('.nav-link');
+
+      projectsParentSpan.addEventListener('click', (e) => {
+        e.stopPropagation();
+        projectsNavItem.classList.toggle('open');
+      });
+
+      document.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!projectsNavItem.contains(e.target)) {
+          projectsNavItem.classList.remove('open');
+        }
+      });
+
+      // Search Bar Functionality
+      const searchContainer = document.getElementById('searchContainer');
+      const searchToggleBtn = document.getElementById('searchToggleBtn');
+      const searchInput = document.getElementById('searchInput');
+
+      searchToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        searchContainer.classList.toggle('active');
+        if (searchContainer.classList.contains('active')) {
+          searchInput.focus();
+        } else {
+          searchInput.value = '';
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!searchContainer.contains(e.target)) {
+          searchContainer.classList.remove('active');
+        }
+      });
+
+      // Scroll-to-Top Handler
+      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.classList.add('visible');
+        } else {
+          scrollToTopBtn.classList.remove('visible');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

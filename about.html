@@ -1,0 +1,2701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Vaijanti Green Energy</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@700;800&family=Open+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP & ScrollTrigger Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { 
+      scroll-behavior: smooth; 
+    }
+
+    body {
+      background-color: #190f00;
+      color: #b5a695;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      padding-top: 90px;
+      overflow-x: hidden;
+    }
+
+    /* FIXED HEADER & SPACING */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      background-color: #2e1a00;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 999999; 
+      display: flex;
+      align-items: center;
+      pointer-events: auto; 
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3% 0 4%;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      height: 100%;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-family: 'Oswald', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .logo-orange { color: #ff9d00; }
+    .logo-divider { color: #ff9d00; margin: 0 10px; font-weight: 400; }
+    .logo-yellow { color: #ffd200; letter-spacing: 4px; text-transform: uppercase; }
+    
+    .nav-links { 
+      display: flex; 
+      align-items: center; 
+      list-style: none; 
+      gap: 52px;
+      height: 100%;
+    }
+    .nav-item {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .nav-link {
+      font-family: 'Oswald', sans-serif;
+      color: #e6e6e6;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      transition: color 0.1s ease; 
+      cursor: pointer;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+    .nav-link:hover, .nav-link.active { color: #ff9d00; }
+    
+    .dropdown-arrow {
+      font-size: 18px;
+      transition: transform 0.3s ease;
+      display: inline-block;
+      line-height: 1;
+    }
+    .nav-item:hover .dropdown-arrow,
+    .nav-item.open .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .nav-links > li {
+      position: relative;
+    }
+    .nav-links > li::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-links > li:hover::after,
+    .nav-links > li.active-tab::after {
+      width: 100%;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 90px;
+      left: 0;
+      width: 230px;
+      background-color: #241400;
+      border: 1px solid #4a2805;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      list-style: none;
+      overflow: hidden;
+      
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px) scale(0.97);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+      z-index: 1000;
+    }
+
+    .nav-item:hover .dropdown-menu,
+    .nav-item.open .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .dropdown-item a {
+      display: block;
+      padding: 14px 20px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #e6e6e6;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(74, 40, 5, 0.5);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .dropdown-item:last-child a {
+      border-bottom: none;
+    }
+    .dropdown-item a:hover {
+      background-color: #ff9d00;
+      color: #ffffff;
+      padding-left: 24px;
+    }
+
+    /* HEADER RIGHT ACTIONS */
+    .header-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 0;
+      height: 42px;
+      padding: 0 0 0 15px;
+      background-color: #1c1000;
+      border: 1px solid #4a2805;
+      border-radius: 4px;
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      outline: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease, padding 0.4s ease;
+    }
+
+    .search-container.active .search-input {
+      width: 210px;
+      opacity: 1;
+      visibility: visible;
+      padding: 0 35px 0 15px;
+      border-color: #ff9d00;
+    }
+
+    .search-toggle-btn {
+      width: 42px;
+      height: 42px;
+      background-color: #241400;
+      border: 1px solid #4a2805;
+      border-radius: 4px;
+      color: #ff9d00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 2;
+    }
+
+    .search-toggle-btn:hover {
+      background-color: #ff9d00;
+      color: #ffffff;
+      border-color: #ff9d00;
+    }
+
+    .search-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+    }
+
+    .search-submit-icon {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: #ff9d00;
+      cursor: pointer;
+      display: none;
+      z-index: 3;
+    }
+    .search-container.active .search-submit-icon {
+      display: block;
+    }
+
+    .cta-btn {
+      background-color: #ff9d00;
+      color: #ffffff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      display: inline-block;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .cta-btn:hover { background-color: #e68d00; transform: scale(1.05); }
+
+    /* SCROLL-TO-TOP BUTTON */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(36, 20, 0, 0.85);
+      border: 1.5px solid #ff9d00;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .scroll-to-top:hover { background-color: #ff9d00; transform: translateY(-4px) scale(1.05); }
+    .scroll-to-top svg { width: 18px; height: 18px; stroke: #ff9d00; stroke-width: 2.5; fill: none; transition: stroke 0.3s ease; }
+    .scroll-to-top:hover svg { stroke: #ffffff; }
+    .scroll-to-top svg:first-child { margin-bottom: -6px; }
+
+    /* FLOATING CONTACT WIDGETS */
+    .floating-contact-widgets {
+      position: fixed;
+      bottom: 30px;
+      left: 15px;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-pulse-btn {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .contact-pulse-btn:hover {
+      transform: scale(1.12);
+    }
+
+    .contact-pulse-btn.phone-btn {
+      background-color: #f7a600;
+      color: #ffffff;
+    }
+
+    .contact-pulse-btn.whatsapp-btn {
+      background-color: #25d366;
+      color: #ffffff;
+    }
+
+    .contact-pulse-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      z-index: 2;
+    }
+
+    .contact-pulse-btn::before,
+    .contact-pulse-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 50%;
+      animation: rippleWave 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .contact-pulse-btn.phone-btn::before,
+    .contact-pulse-btn.phone-btn::after {
+      background-color: rgba(247, 166, 0, 0.4);
+    }
+    .contact-pulse-btn.whatsapp-btn::before,
+    .contact-pulse-btn.whatsapp-btn::after {
+      background-color: rgba(37, 211, 102, 0.4);
+    }
+    .contact-pulse-btn::after {
+      animation-delay: 1s;
+    }
+
+    @keyframes rippleWave {
+      0% { transform: scale(1); opacity: 0.85; }
+      100% { transform: scale(2.3); opacity: 0; }
+    }
+
+    /* FLOATING SOCIAL MEDIA SIDEBAR */
+    .social-sidebar {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .social-item {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      height: 54px;
+      width: 200px;
+      border-radius: 50px 0 0 50px;
+      transform: translateX(146px);
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s;
+      box-shadow: -3px 4px 12px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+    .social-item:hover { transform: translateX(0) scale(1.02); }
+    .social-icon-circle {
+      width: 54px;
+      height: 54px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .social-icon-circle svg { width: 24px; height: 24px; }
+    .social-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding-left: 22px;
+      white-space: nowrap;
+    }
+    .social-item.instagram { background-color: #ff2a2a; }
+    .social-item.instagram .social-icon-circle svg { fill: #ff2a2a; }
+    .social-item.facebook { background-color: #2b82e4; }
+    .social-item.facebook .social-icon-circle svg { fill: #2b82e4; }
+    .social-item.twitter { background-color: #3bc1ed; }
+    .social-item.twitter .social-icon-circle svg { fill: #3bc1ed; }
+
+    /* STATS RIBBON (BELOW HERO) */
+    .top-stats-ribbon {
+      background-color: #f7a600;
+      width: 100%;
+    }
+
+    .top-stats-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 14px 4%;
+    }
+
+    .top-stat-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #ffffff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-right: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .top-stat-item:last-child { border-right: none; }
+
+    .top-stat-item svg {
+      width: 16px; height: 16px;
+      stroke: #ffffff; stroke-width: 2.2; fill: none;
+    }
+
+    /* TAB PANE TOGGLE STYLES */
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active-pane {
+      display: block;
+    }
+
+    /* =========================================================
+       1. VAIJANTI GROUP HERO & FOUNDER SECTION STYLES
+       ========================================================= */
+    .vaijanti-group-hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 650px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      background: #190f00;
+    }
+
+    .vaijanti-group-hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      transform: scale(1.08);
+      z-index: 1;
+    }
+
+    .vaijanti-group-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.05) 0%,
+        rgba(0, 0, 0, 0.15) 35%,
+        rgba(0, 0, 0, 0.65) 75%,
+        rgba(0, 0, 0, 0.88) 100%
+      );
+    }
+
+    .vaijanti-group-content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      padding-left: 5.5%;
+      padding-right: 5.5%;
+      padding-bottom: 70px;
+    }
+
+    .vaijanti-group-title {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(42px, 4vw, 66px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(45px);
+    }
+
+    .vaijanti-group-subtitle {
+      font-family: "Roboto", sans-serif;
+      font-size: clamp(17px, 1.3vw, 22px);
+      font-weight: 400;
+      line-height: 1.45;
+      color: #ffffff;
+      max-width: 500px;
+      margin-bottom: 42px;
+      opacity: 0;
+      transform: translateY(35px);
+    }
+
+    .vaijanti-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      font-family: "Roboto", sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      opacity: 0;
+      transform: translateY(25px);
+    }
+
+    .vaijanti-home-icon {
+      width: 15px;
+      height: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .vaijanti-home-icon::before {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 8px;
+      left: 3px;
+      top: 6px;
+      border: 1.5px solid #ffffff;
+      border-top: none;
+    }
+
+    .vaijanti-home-icon::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      left: 3px;
+      top: 2px;
+      border-left: 1.5px solid #ffffff;
+      border-top: 1.5px solid #ffffff;
+      transform: rotate(45deg);
+    }
+
+    .vaijanti-breadcrumb-line {
+      opacity: 0.7;
+    }
+
+    .vaijanti-accent-line {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        #ff9d00 0%,
+        #ffd200 45%,
+        transparent 100%
+      );
+      z-index: 5;
+    }
+
+    .vaijanti-scroll-indicator {
+      position: absolute;
+      right: 5%;
+      bottom: 55px;
+      z-index: 4;
+      width: 35px;
+      height: 55px;
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 10px;
+      opacity: 0.8;
+    }
+
+    .vaijanti-scroll-dot {
+      width: 5px;
+      height: 10px;
+      border-radius: 10px;
+      background: #ffffff;
+      animation: scrollMove 1.7s infinite ease-in-out;
+    }
+
+    @keyframes scrollMove {
+      0% { transform: translateY(0); opacity: 0; }
+      30% { opacity: 1; }
+      70% { opacity: 1; }
+      100% { transform: translateY(23px); opacity: 0; }
+    }
+
+    /* SECTION 2: FOUNDER */
+    .founder-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: #120e0a;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .founder-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      margin: 0 auto;
+    }
+
+    .founder-image-wrapper {
+      width: 50%;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background: #0c0a08;
+    }
+
+    .founder-img {
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transform: scale(1.04);
+    }
+
+    .founder-image-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        90deg,
+        transparent 65%,
+        rgba(18,14,10,0.35) 100%
+      );
+    }
+
+    .founder-content-wrapper {
+      width: 50%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 5.5%;
+      background: #120e0a;
+      position: relative;
+    }
+
+    .founder-quote-box {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      border: 1px solid #704500;
+      background: #1a1104;
+      padding: 42px 48px;
+      border-radius: 6px;
+      margin-bottom: 42px;
+      opacity: 0;
+      transform: translateY(60px);
+    }
+
+    .founder-quote-box::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 18px;
+      width: 55px;
+      height: 2px;
+      background: #ff9d00;
+    }
+
+    .founder-quote-box p {
+      color: #e1d9d0;
+      font-family: "Roboto", sans-serif;
+      font-size: clamp(16px, 1.2vw, 20px);
+      font-weight: 400;
+      line-height: 1.75;
+      margin: 0;
+      letter-spacing: 0.15px;
+    }
+
+    .founder-quote-box strong {
+      color: #ffd200;
+      font-weight: 700;
+    }
+
+    .quote-icon {
+      position: absolute;
+      top: -21px;
+      left: 25px;
+      background: #1a1104;
+      color: #ffb000;
+      font-family: Georgia, serif;
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 1;
+      padding: 0 10px;
+    }
+
+    .founder-quote-box::after {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 48%;
+      width: 34px;
+      height: 34px;
+      background: #1a1104;
+      border-right: 1px solid #704500;
+      border-bottom: 1px solid #704500;
+      transform: rotate(45deg);
+    }
+
+    .founder-details {
+      padding-left: 15px;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .founder-details h3 {
+      color: #ffffff;
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(26px, 2vw, 36px);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+      margin: 0 0 8px 0;
+    }
+
+    .founder-details p {
+      color: #a99a89;
+      font-family: "Roboto", sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      margin: 0 0 28px 0;
+      text-transform: uppercase;
+    }
+
+    .founder-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 140px;
+      border: 1px solid #ff9d00;
+      color: #ffb000;
+      background: transparent;
+      padding: 13px 23px;
+      font-family: "Roboto", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background-color 0.35s ease, color 0.35s ease, transform 0.35s ease;
+    }
+
+    .founder-btn:hover {
+      background-color: #ff9d00;
+      color: #120e0a;
+      transform: translateY(-2px);
+    }
+
+    .founder-section::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        #ff9d00 0%,
+        #ffd200 45%,
+        transparent 100%
+      );
+      z-index: 10;
+    }
+
+    /* 2. COMPANY VISION SECTION */
+    .vg-vision-section {
+      width: 100%;
+      background-color: #f1f2f4;
+      padding: 24px 0 24px 0;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .vg-vision-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .vg-vision-content {
+      width: 32%;
+      padding-left: 7.2%;
+      padding-right: 3.5%;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+
+    .vg-vision-content h2 {
+      margin: 0 0 22px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: #2e3338;
+      text-transform: uppercase;
+    }
+
+    .vg-vision-content p {
+      margin: 0;
+      max-width: 330px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+      color: #3b4045;
+    }
+
+    .vg-vision-image {
+      width: 68%;
+      padding-right: 1.8%;
+      box-sizing: border-box;
+      line-height: 0;
+      opacity: 0;
+      transform: translateX(40px);
+    }
+
+    .vg-vision-image img {
+      display: block;
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* 3. SPLIT SECTION: BOUNDLESS POTENTIAL */
+    .vg-split-section {
+      width: 100%;
+      background-color: #f4f5f7;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .vg-split-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .vg-split-media {
+      flex: 0 0 50%;
+      width: 50%;
+      padding: 22px 20px 22px 26px; 
+      box-sizing: border-box;
+    }
+
+    .vg-split-media img {
+      display: block;
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 2px;
+    }
+
+    .vg-split-content {
+      flex: 0 0 50%;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      padding: 40px 7% 40px 4%;
+      box-sizing: border-box;
+    }
+
+    .vg-text-inner {
+      width: 100%;
+      max-width: 540px;
+    }
+
+    .vg-text-inner h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 31px;
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: #2a2f35;
+      text-transform: uppercase;
+      margin: 0 0 22px 0;
+    }
+
+    .vg-text-inner p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.62;
+      font-weight: 400;
+      color: #42474d;
+      margin: 0 0 16px 0;
+      letter-spacing: 0.15px;
+    }
+
+    .vg-text-inner p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* =========================================================
+       4. CREATING THE IMPACT SECTION
+       ========================================================= */
+    .vg-impact-section {
+      width: 100%;
+      background-color: #ededed;
+      padding: 70px 0 90px 0;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .vg-impact-container {
+      width: 100%;
+      max-width: 96%;
+      margin: 0 auto;
+      padding: 0 2%;
+      box-sizing: border-box;
+    }
+
+    .vg-impact-heading {
+      margin: 0 0 70px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 42px;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      color: #2b3036;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(35px);
+    }
+
+    .vg-impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 60px;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .vg-impact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .vg-icon-wrap {
+      width: 110px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .vg-icon-wrap svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .vg-stat-num {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 1;
+      color: #24292e;
+      letter-spacing: 0.6px;
+      margin-bottom: 18px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .vg-stat-desc {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 20px;
+      line-height: 1.5;
+      font-weight: 500;
+      color: #383e44;
+      max-width: 320px;
+      letter-spacing: 0.2px;
+    }
+
+    /* =========================================================
+       5. ALWAYS LEADING BY EXAMPLE (LEADERSHIP TEAM)
+       ========================================================= */
+    .vg-leadership-section {
+      width: 100%;
+      background-color: #ededed;
+      padding: 75px 0 90px 0;
+      box-sizing: border-box;
+    }
+
+    .vg-leadership-container {
+      width: 100%;
+      max-width: 96%;
+      margin: 0 auto;
+      padding: 0 2%;
+      box-sizing: border-box;
+    }
+
+    .vg-leadership-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 55px;
+    }
+
+    .vg-leadership-title {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #2b3036;
+      text-transform: uppercase;
+    }
+
+    .vg-view-all-btn {
+      text-decoration: none;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #2b3036;
+      background-color: transparent;
+      border: 1.5px solid #aeb4ba;
+      padding: 9px 24px;
+      border-radius: 4px;
+      transition: all 0.25s ease;
+    }
+
+    .vg-view-all-btn:hover {
+      background-color: #e2e4e6;
+      border-color: #2b3036;
+    }
+
+    .vg-leader-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid #d5d8dc;
+      background-color: #ededed;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .vg-leader-card {
+      display: flex;
+      flex-direction: column;
+      padding: 32px 28px 30px 28px;
+      box-sizing: border-box;
+      border-right: 1px solid #d5d8dc;
+      transition: background-color 0.25s ease;
+    }
+
+    .vg-leader-card:last-child {
+      border-right: none;
+    }
+
+    .vg-leader-card:hover {
+      background-color: #e6e8e9;
+    }
+
+    .vg-leader-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      margin-bottom: 30px;
+      overflow: hidden;
+      background-color: #dcdfe2;
+    }
+
+    .vg-leader-img img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .vg-leader-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+      margin-top: auto;
+    }
+
+    .vg-leader-info h3 {
+      margin: 0 0 10px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: #24292e;
+      text-transform: uppercase;
+    }
+
+    .vg-leader-info p {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.5;
+      font-weight: 400;
+      color: #555c63;
+    }
+
+    .vg-arrow-icon {
+      font-size: 18px;
+      color: #3b4045;
+      line-height: 1;
+      margin-top: 2px;
+      transition: transform 0.2s ease;
+    }
+
+    .vg-leader-card:hover .vg-arrow-icon {
+      transform: translateX(4px);
+    }
+
+    /* =========================================================
+       6. CORE VALUES SECTION
+       ========================================================= */
+    .vg-values-section {
+      width: 100%;
+      background-color: #ededed;
+      padding: 50px 0 60px 0;
+      box-sizing: border-box;
+    }
+
+    .vg-values-container {
+      width: 100%;
+      max-width: 96%;
+      margin: 0 auto;
+      padding: 0 2%;
+      box-sizing: border-box;
+    }
+
+    .vg-values-heading {
+      margin: 0 0 50px 0;
+      max-width: 1200px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 38px;
+      line-height: 1.25;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #2b3036;
+      text-transform: uppercase;
+    }
+
+    .vg-values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 80px;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .vg-value-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    .vg-val-icon {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .vg-val-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .vg-val-title {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #262b30;
+      margin: 0 0 14px 0;
+      letter-spacing: 0.4px;
+    }
+
+    .vg-val-desc {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 400;
+      color: #3f4449;
+      max-width: 360px;
+      margin: 0;
+      letter-spacing: 0.2px;
+    }
+
+    /* WHAT DRIVES US */
+    .mission-section {
+      background-color: #2e1a00;
+      padding: 95px 4%;
+    }
+
+    .mission-container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .section-small-tag {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ff9d00;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .section-main-heading {
+      font-family: 'Oswald', sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .mission-quote-box {
+      border-left: 3px solid #ff9d00;
+      padding-left: 24px;
+      margin: 24px 0 45px 0;
+      max-width: 780px;
+    }
+
+    .mission-quote {
+      font-style: italic;
+      color: #d1c4b6;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid #4a2805;
+      background-color: #241400;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .mission-card {
+      padding: 36px 40px;
+      border-right: 1px solid #4a2805;
+      border-bottom: 1px solid #4a2805;
+    }
+
+    .mission-card:nth-child(2n) { border-right: none; }
+    .mission-card:nth-child(3),
+    .mission-card:nth-child(4) { border-bottom: none; }
+
+    .mission-card-title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .mission-card-bar {
+      width: 4px; height: 22px;
+      background-color: #ff9d00;
+      border-radius: 2px;
+    }
+
+    .mission-card-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .mission-card-desc {
+      color: #b5a695;
+      font-size: 13.5px;
+      line-height: 1.65;
+      padding-left: 16px;
+    }
+
+    /* LEADERSHIP */
+    .leadership-section {
+      background-color: #190f00;
+      padding: 95px 4%;
+    }
+
+    .leadership-container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .leader-card {
+      background-color: #211400;
+      border: 1px solid #4a2805;
+      border-radius: 6px;
+      padding: 30px 32px;
+      display: flex;
+      gap: 22px;
+    }
+
+    .leader-avatar {
+      width: 52px; height: 52px;
+      background-color: #4a2805;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #ff9d00;
+      flex-shrink: 0;
+    }
+
+    .leader-info { display: flex; flex-direction: column; }
+    .leader-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+    .leader-role {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #ff9d00;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .leader-bio {
+      color: #b5a695;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* CERTIFICATIONS / JOURNEY */
+    .cert-section {
+      background-color: #241200;
+      padding: 70px 4% 80px 4%;
+      text-align: center;
+    }
+
+    .cert-container { max-width: 1240px; margin: 0 auto; }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .cert-box {
+      background-color: #1a0d00;
+      border: 1px solid #4a2805;
+      border-radius: 6px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .cert-icon { margin-bottom: 12px; }
+    .cert-icon svg { width: 22px; height: 22px; stroke: #ff9d00; stroke-width: 2; fill: none; }
+    .cert-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .cert-sub { color: #8c7c6d; font-size: 11.5px; line-height: 1.4; }
+
+    /* READY TO WORK CTA */
+    .ready-cta-section {
+      background-color: #2e1a00;
+      padding: 85px 4%;
+      text-align: center;
+    }
+
+    .ready-cta-container { max-width: 1240px; margin: 0 auto; }
+    .cta-work-heading {
+      font-family: 'Oswald', sans-serif;
+      font-size: 46px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+    .cta-work-sub {
+      color: #b5a695;
+      font-size: 14.5px;
+      max-width: 620px;
+      margin: 0 auto 30px auto;
+      line-height: 1.6;
+    }
+    .cta-btn-group { display: flex; justify-content: center; gap: 16px; }
+    .btn-orange-cta {
+      background-color: #ff9d00;
+      color: #ffffff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.2s ease;
+    }
+    .btn-orange-cta:hover { background-color: #e68d00; }
+    .btn-outline-cta {
+      background-color: transparent;
+      color: #ffffff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 4px;
+      border: 1.5px solid #4a2805;
+      display: inline-flex;
+      align-items: center;
+      transition: border-color 0.2s ease;
+    }
+    .btn-outline-cta:hover { border-color: #ff9d00; }
+
+    /* FOOTER */
+    .yellow-strip {
+      background-color: #f7a600;
+      color: #ffffff;
+      text-align: center;
+      padding: 16px 0;
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      width: 100%;
+    }
+
+    .footer-main {
+      background-color: #190f00;
+      padding: 70px 6% 60px 6%;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.2fr;
+      gap: 60px;
+    }
+
+    .brand-header { display: flex; align-items: center; gap: 15px; margin-bottom: 22px; }
+    .brand-icon {
+      width: 38px; height: 38px;
+      background-color: #f7a600;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #ffffff; font-size: 18px;
+    }
+    .brand-title h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: #ffffff; letter-spacing: 1px;
+      text-transform: uppercase; line-height: 1.1;
+    }
+    .brand-title span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px; font-weight: 600;
+      color: #b5a695; letter-spacing: 1.5px;
+      text-transform: uppercase; display: block; margin-top: 4px;
+    }
+    .brand-desc {
+      color: #9d8b7a; font-size: 14px; line-height: 1.6;
+      max-width: 440px; margin-bottom: 25px;
+    }
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; color: #9d8b7a; font-size: 14px; }
+    .contact-item svg { width: 15px; height: 15px; stroke: #f7a600; fill: none; stroke-width: 2; flex-shrink: 0; }
+    .contact-item a { color: #9d8b7a; text-decoration: none; transition: color 0.2s; }
+    .contact-item a:hover { color: #ff9d00; }
+    .footer-col h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px; font-weight: 700; color: #ffffff;
+      letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 24px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links li a { color: #9d8b7a; text-decoration: none; font-size: 14px; transition: color 0.2s ease; }
+    .footer-links li a:hover { color: #ff9d00; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 24px 6%;
+      display: flex; justify-content: space-between; align-items: center;
+      color: #8c735c; font-size: 13px; background-color: #190f00;
+    }
+
+    /* RESPONSIVE MEDIA QUERIES */
+    @media (max-width: 1440px) {
+      .vg-values-section { padding: 45px 0 50px 0; }
+      .vg-values-heading { font-size: 32px; margin-bottom: 40px; }
+      .vg-values-grid { column-gap: 40px; }
+      .vg-val-icon { width: 85px; height: 85px; margin-bottom: 20px; }
+      .vg-val-title { font-size: 24px; }
+      .vg-val-desc { font-size: 16px; max-width: 300px; }
+
+      .vg-leadership-title { font-size: 32px; }
+      .vg-leader-card { padding: 24px 20px; }
+
+      .vg-impact-heading {
+        font-size: 34px;
+        margin-bottom: 55px;
+      }
+      .vg-icon-wrap {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 24px;
+      }
+      .vg-stat-num {
+        font-size: 36px;
+        margin-bottom: 14px;
+      }
+      .vg-stat-desc {
+        font-size: 17px;
+        max-width: 260px;
+      }
+      .vg-impact-grid {
+        column-gap: 35px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .vg-leader-grid { grid-template-columns: repeat(2, 1fr); }
+      .vg-leader-card:nth-child(2) { border-right: none; }
+      .vg-leader-card:nth-child(1), .vg-leader-card:nth-child(2) { border-bottom: 1px solid #d5d8dc; }
+
+      .vaijanti-group-hero { min-height: 600px; }
+      .vaijanti-group-content { padding-left: 6%; padding-right: 6%; padding-bottom: 60px; }
+      .vaijanti-scroll-indicator { right: 6%; bottom: 45px; }
+      .founder-container { min-height: 850px; }
+      .founder-image-wrapper { min-height: 850px; }
+      .founder-img { min-height: 850px; }
+      .founder-content-wrapper { min-height: 850px; padding: 60px 5%; }
+      .founder-quote-box { padding: 35px 35px; }
+      .founder-quote-box p { font-size: 16px; line-height: 1.7; }
+      
+      .vg-vision-content { width: 38%; padding-left: 5%; padding-right: 2%; }
+      .vg-vision-content h2 { font-size: 28px; margin-bottom: 18px; }
+      .vg-vision-content p { font-size: 14px; }
+      .vg-vision-image { width: 62%; }
+      .vg-vision-image img { height: 380px; }
+
+      .vg-split-media { padding: 18px 15px 18px 20px; }
+      .vg-split-media img { height: 400px; }
+      .vg-split-content { padding: 30px 5% 30px 3%; }
+      .vg-text-inner h2 { font-size: 25px; margin-bottom: 16px; }
+      .vg-text-inner p { font-size: 13.5px; line-height: 1.55; }
+    }
+
+    @media (max-width: 992px) {
+      .vg-values-section { padding: 40px 0 45px 0; }
+      .vg-values-heading { font-size: 26px; text-align: center; margin-bottom: 35px; }
+      .vg-values-grid { grid-template-columns: 1fr; row-gap: 40px; }
+      .vg-val-desc { max-width: 450px; }
+
+      .vg-impact-section {
+        padding: 50px 0 60px 0;
+      }
+      .vg-impact-heading {
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 45px;
+      }
+      .vg-impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 50px;
+        column-gap: 25px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .vg-leadership-section { padding: 50px 0; }
+      .vg-leadership-header { flex-direction: column; align-items: flex-start; gap: 18px; margin-bottom: 35px; }
+      .vg-leadership-title { font-size: 24px; }
+      .vg-leader-grid { grid-template-columns: 1fr; }
+      .vg-leader-card { border-right: none; border-bottom: 1px solid #d5d8dc; }
+      .vg-leader-card:last-child { border-bottom: none; }
+
+      .vaijanti-group-hero { height: 90vh; min-height: 560px; }
+      .vaijanti-group-content { padding-left: 25px; padding-right: 25px; padding-bottom: 45px; }
+      .vaijanti-group-title { font-size: 40px; margin-bottom: 15px; }
+      .vaijanti-group-subtitle { font-size: 16px; max-width: 360px; margin-bottom: 30px; }
+      .vaijanti-scroll-indicator { display: none; }
+      
+      .founder-section { min-height: auto; display: block; }
+      .founder-container { display: flex; flex-direction: column; min-height: auto; }
+      .founder-image-wrapper { width: 100%; height: 70vh; min-height: 500px; max-height: 700px; }
+      .founder-img { width: 100%; height: 100%; min-height: 500px; object-fit: cover; object-position: center top; }
+      .founder-image-wrapper::after {
+        background: linear-gradient(180deg, transparent 60%, rgba(18,14,10,0.45) 100%);
+      }
+      .founder-content-wrapper { width: 100%; min-height: auto; padding: 70px 25px 80px; }
+      .founder-quote-box { padding: 35px 25px; margin-bottom: 40px; }
+      .founder-quote-box p { font-size: 16px; line-height: 1.7; }
+      .founder-details { padding-left: 5px; }
+      .founder-details h3 { font-size: 30px; }
+      .founder-details p { font-size: 11px; line-height: 1.6; letter-spacing: 1.5px; }
+      .founder-quote-box::after { left: 45%; }
+      
+      .vg-vision-section { padding: 40px 0; }
+      .vg-vision-container { flex-direction: column; }
+      .vg-vision-content { width: 100%; padding: 0 24px 30px; transform: translateY(30px); }
+      .vg-vision-content p { max-width: 100%; }
+      .vg-vision-image { width: 100%; padding: 0 20px; transform: translateY(30px); }
+      .vg-vision-image img { height: 280px; }
+
+      .vg-split-container { flex-direction: column; }
+      .vg-split-media { width: 100%; flex: auto; padding: 24px 20px 10px 20px; }
+      .vg-split-media img { height: 280px; }
+      .vg-split-content { width: 100%; flex: auto; padding: 24px 20px 35px 20px; }
+      .vg-text-inner { max-width: 100%; }
+      .vg-text-inner h2 { font-size: 23px; }
+
+      .footer-main { grid-template-columns: 1fr; gap: 40px; }
+      .top-stats-container { grid-template-columns: 1fr; gap: 12px; }
+      .top-stat-item { border-right: none; }
+      .mission-grid { grid-template-columns: 1fr; }
+      .mission-card { border-right: none; }
+      .leadership-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .vaijanti-group-hero { min-height: 520px; }
+      .vaijanti-group-content { padding-left: 20px; padding-right: 20px; padding-bottom: 35px; }
+      .vaijanti-group-title { font-size: 34px; }
+      .vaijanti-group-subtitle { font-size: 15px; }
+      .vaijanti-breadcrumb { font-size: 12px; }
+      .founder-image-wrapper { height: 62vh; min-height: 450px; }
+      .founder-img { min-height: 450px; }
+      .founder-content-wrapper { padding: 60px 20px 70px; }
+      .founder-quote-box { padding: 30px 20px; }
+      .founder-quote-box p { font-size: 15px; line-height: 1.7; }
+      .quote-icon { left: 18px; font-size: 42px; }
+      .founder-details h3 { font-size: 27px; }
+      .founder-details p { font-size: 10px; letter-spacing: 1.2px; }
+      .cert-grid { grid-template-columns: 1fr; }
+
+      .vg-impact-grid {
+        grid-template-columns: 1fr;
+        row-gap: 40px;
+      }
+      .vg-icon-wrap {
+        width: 75px;
+        height: 75px;
+      }
+      .vg-stat-num {
+        font-size: 32px;
+      }
+      .vg-stat-desc {
+        font-size: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .vaijanti-scroll-dot { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FIXED HEADER -->
+  <header>
+    <nav class="navbar">
+      <a href="./index.html" class="brand-logo">
+        <span class="logo-orange">Vaijanti</span>
+        <span class="logo-divider">|</span>
+        <span class="logo-yellow">RENEWABLE</span>
+      </a>
+
+      <ul class="nav-links">
+        <li class="nav-item"><a href="./index.html" class="nav-link">HOME</a></li>
+        
+        <li class="nav-item" id="projectsNavItem">
+          <span class="nav-link">
+            PROJECTS <span class="dropdown-arrow">&#9662;</span>
+          </span>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="./projects.html#upcoming">Upcoming Projects</a></li>
+            <li class="dropdown-item"><a href="./projects.html#running">Running Projects</a></li>
+            <li class="dropdown-item"><a href="./projects.html#completed">Completed Projects</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item active-tab">
+          <a href="./about.html" class="nav-link active">
+            ABOUT <span class="dropdown-arrow">&#9662;</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a href="#company" class="about-switch-link" data-pane="pane-company">Vaijanti Group</a></li>
+            <li class="dropdown-item"><a href="#thoughts" class="about-switch-link" data-pane="pane-thoughts">From the Leader</a></li>
+            <li class="dropdown-item"><a href="#leadership" class="about-switch-link" data-pane="pane-leadership">Leadership</a></li>
+            <li class="dropdown-item"><a href="#journey" class="about-switch-link" data-pane="pane-journey">Our Journey</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a href="./electricity-sales.html" class="nav-link">ELECTRICITY SALES</a></li>
+        <li class="nav-item"><a href="./investors.html" class="nav-link">INVESTORS</a></li>
+        <li class="nav-item"><a href="./contact.html" class="nav-link">CONTACT</a></li>
+      </ul>
+
+      <div class="header-right-actions">
+        <div class="search-container" id="searchContainer">
+          <input type="text" class="search-input" id="searchInput" placeholder="Search projects, solar..." />
+          <button class="search-toggle-btn" id="searchToggleBtn" aria-label="Toggle Search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+          <button class="search-submit-icon" id="searchSubmitBtn" aria-label="Submit Search">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="#ff9d00" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+        <a href="./contact.html" class="cta-btn">GET IN TOUCH</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- FLOATING CONTACT WIDGETS -->
+  <div class="floating-contact-widgets">
+    <a href="tel:+918950444885" class="contact-pulse-btn phone-btn" aria-label="Call Us (+91 8950444885)">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    </a>
+
+    <a href="https://wa.me/918950444885" target="_blank" class="contact-pulse-btn whatsapp-btn" aria-label="WhatsApp Us (+91 8950444885)">
+      <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+  </div>
+
+  <!-- FLOATING SOCIAL MEDIA SIDEBAR -->
+  <div class="social-sidebar">
+    <a href="https://instagram.com" target="_blank" class="social-item instagram">
+      <div class="social-icon-circle">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="#ff2a2a" stroke-width="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="#ff2a2a" stroke-width="2"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#ff2a2a" stroke-width="2" stroke-linecap="round"></line></svg>
+      </div>
+      <span class="social-label">Instagram</span>
+    </a>
+
+    <a href="https://facebook.com" target="_blank" class="social-item facebook">
+      <div class="social-icon-circle">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="#2b82e4"></path></svg>
+      </div>
+      <span class="social-label">Facebook</span>
+    </a>
+
+    <a href="https://twitter.com" target="_blank" class="social-item twitter">
+      <div class="social-icon-circle">
+        <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" fill="#3bc1ed"></path></svg>
+      </div>
+      <span class="social-label">Twitter</span>
+    </a>
+  </div>
+
+  <!-- SCROLL TO TOP BUTTON -->
+  <div class="scroll-to-top" id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </div>
+
+  <main>
+    <!-- PANE 1: VAIJANTI GROUP -->
+    <div class="tab-pane active-pane" id="pane-company">
+      
+      <!-- 1. VAIJANTI GROUP HERO (BACKGROUND IMAGE APPLIED) -->
+      <section class="vaijanti-group-hero" id="vaijanti-group">
+        <img class="vaijanti-group-hero-image" src="chairman-banner.png" alt="Chairman Kavyansh - Vaijanti Group">
+        <div class="vaijanti-group-overlay"></div>
+        <div class="vaijanti-group-content">
+          <h1 class="vaijanti-group-title">The Vaijanti Group</h1>
+          <p class="vaijanti-group-subtitle">
+            Powering India's ambitions.<br>
+            Building a sustainable future.
+          </p>
+          <div class="vaijanti-breadcrumb">
+            <span class="vaijanti-home-icon"></span>
+            <span class="vaijanti-breadcrumb-line">-</span>
+            <span>About Us</span>
+          </div>
+        </div>
+        <div class="vaijanti-scroll-indicator">
+          <span class="vaijanti-scroll-dot"></span>
+        </div>
+        <div class="vaijanti-accent-line"></div>
+      </section>
+
+      <!-- TOP STATS RIBBON (DIRECTLY BELOW VAIJANTI GROUP HERO) -->
+      <div class="top-stats-ribbon">
+        <div class="top-stats-container">
+          <div class="top-stat-item">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>Founded 2019</span>
+          </div>
+          <div class="top-stat-item">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-8-7.5-8-12a8 8 0 1 1 16 0c0 4.5-8 12-8 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+            <span>Jaipur, Rajasthan</span>
+          </div>
+          <div class="top-stat-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            <span>500+ MW Operational</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. FOUNDER / FROM THE LEADER (PORTRAIT IMAGE APPLIED) -->
+      <section class="founder-section" id="from-the-leader">
+        <div class="founder-container">
+          <div class="founder-image-wrapper">
+            <img src="kavyansh-rana.jpg" alt="Kavyansh Rana" class="founder-img">
+          </div>
+          <div class="founder-content-wrapper">
+            <div class="founder-quote-box">
+              <span class="quote-icon">“</span>
+              <p>
+                True <strong>power</strong> does not lie in wealth or balance sheets; it lies in <strong>uplifting lives</strong> and driving the nation forward.
+                <br><br>
+                <strong>Enterprise</strong> is not merely a pursuit of profit, but a <strong>sacred duty</strong> to serve our country and build its <strong>self-reliant future</strong>.
+                <br><br>
+                When purpose leads the work, everything else falls into place.
+              </p>
+            </div>
+            <div class="founder-details">
+              <h3>Kavyansh Rana</h3>
+              <p>FOUNDER &amp; LEADER, VAIJANTI GREEN ENERGY</p>
+              <a href="#profile" class="founder-btn">VIEW PROFILE</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. COMPANY VISION -->
+      <section class="vg-vision-section" id="company-vision">
+        <div class="vg-vision-container">
+          <!-- LEFT: TEXT CONTENT -->
+          <div class="vg-vision-content">
+            <h2>COMPANY VISION</h2>
+            <p>
+              To be a world class leader in businesses that enrich lives and contribute to nations in building infrastructure through sustainable value creation.
+            </p>
+          </div>
+
+          <!-- RIGHT: IMAGE -->
+          <div class="vg-vision-image">
+            <img
+              src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1600&q=80"
+              alt="Wind turbines on lush green mountains"
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. UNLEASHING BOUNDLESS POTENTIAL (SPLIT MEDIA SECTION) -->
+      <section class="vg-split-section" id="boundless-potential">
+        <div class="vg-split-container">
+          <!-- LEFT: IMAGE WITH SUBTLE PADDING -->
+          <div class="vg-split-media">
+            <img 
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" 
+              alt="Corporate Infrastructure Building"
+            >
+          </div>
+
+          <!-- RIGHT: BALANCED TEXT CONTENT -->
+          <div class="vg-split-content">
+            <div class="vg-text-inner">
+              <h2>UNLEASHING BOUNDLESS<br>POTENTIAL</h2>
+              
+              <p>
+                The Adani Group is a diversified organisation in India comprising publicly traded companies. It has created a world class transport and utility infrastructure portfolio that has a pan-India presence.
+              </p>
+              
+              <p>
+                Over the years, Adani Group has positioned itself to be the market leader in its transport logistics and energy utility portfolio businesses focusing on large scale infrastructure development in India with O&amp;M practices benchmarked to global standards. With four IG rated businesses, it is the only Infrastructure Investment Grade issuer in India.
+              </p>
+              
+              <p>
+                Adani owes its success and leadership position to its core philosophy of 'Nation Building' driven by 'Growth with Goodness' - a guiding principle for sustainable growth. Adani is committed to increasing its ESG footprint by realigning its businesses with emphasis on climate protection and increasing community outreach through its CSR programme based on the principles of sustainability, diversity and shared values.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. CREATING THE IMPACT SECTION -->
+      <section class="vg-impact-section" id="impact-section">
+        <div class="vg-impact-container">
+          <!-- MAIN HEADING -->
+          <h2 class="vg-impact-heading">CREATING THE IMPACT OF A LIFETIME</h2>
+
+          <!-- 4-COLUMN WIDE GRID -->
+          <div class="vg-impact-grid">
+
+            <!-- Item 1: Team Strength -->
+            <div class="vg-impact-card">
+              <div class="vg-icon-wrap">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#225ca8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="32" cy="18" r="3.2"/>
+                  <circle cx="21" cy="24" r="2.8"/>
+                  <circle cx="43" cy="24" r="2.8"/>
+                  <circle cx="27" cy="30" r="2.6"/>
+                  <circle cx="37" cy="30" r="2.6"/>
+                  <path d="M26 39a6 6 0 0 1 12 0v17h-12z"/>
+                  <path d="M15 44c-3-2-5-6-5-10 0-4 3-8 7-9 2 5 2 11-2 19z"/>
+                  <path d="M49 44c3-2 5-6 5-10 0-4-3-8-7-9-2 5-2 11 2 19z"/>
+                  <path d="M16 46c4 6 9 10 13 10"/>
+                  <path d="M48 46c-4 6-9 10-13 10"/>
+                </svg>
+              </div>
+              <div class="vg-stat-num" data-target="48000" data-suffix="+">0</div>
+              <div class="vg-stat-desc">Team Strength</div>
+            </div>
+
+            <!-- Item 2: Mangroves -->
+            <div class="vg-impact-card">
+              <div class="vg-icon-wrap">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#225ca8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="27,15 17,29 22,29 14,41 25,41 25,49 29,49 29,41 40,41 32,29 37,29"/>
+                  <path d="M37 18l-8 12h5l-6 11h9v8h4v-8h11l-8-11h5z"/>
+                </svg>
+              </div>
+              <div class="vg-stat-num" data-target="3000" data-suffix="+">0</div>
+              <div class="vg-stat-desc">Hectares Mangroves Afforested</div>
+            </div>
+
+            <!-- Item 3: Trees Planted -->
+            <div class="vg-impact-card">
+              <div class="vg-icon-wrap">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#225ca8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 50h40"/>
+                  <path d="M16 50c6-14 18-18 24-18-8 6-10 12-8 18"/>
+                  <path d="M28 50c4-22 16-28 26-28-10 8-12 18-10 28"/>
+                  <path d="M38 50c3-10 10-14 16-14-6 4-8 9-7 14"/>
+                </svg>
+              </div>
+              <div class="vg-stat-num" data-target="6.75" data-decimals="2">0</div>
+              <div class="vg-stat-desc">Million Trees Planted</div>
+            </div>
+
+            <!-- Item 4: Lives Touched -->
+            <div class="vg-impact-card">
+              <div class="vg-icon-wrap">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#225ca8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M32 50v-16"/>
+                  <path d="M32 34c-4-14-16-18-22-12 0 10 10 14 22 12z"/>
+                  <path d="M32 30c5-10 16-12 20-6 0 9-9 14-20 6z"/>
+                </svg>
+              </div>
+              <div class="vg-stat-num" data-target="9.10" data-decimals="2">0</div>
+              <div class="vg-stat-desc">Million Lives Touched</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. ALWAYS LEADING BY EXAMPLE (LEADERSHIP TEAM SECTION) -->
+      <section class="vg-leadership-section" id="leadership-team">
+        <div class="vg-leadership-container">
+
+          <!-- HEADER: HEADING + VIEW ALL BUTTON -->
+          <div class="vg-leadership-header">
+            <h2 class="vg-leadership-title">ALWAYS LEADING BY EXAMPLE</h2>
+            <a href="#" class="vg-view-all-btn">View All</a>
+          </div>
+
+          <!-- 4-COLUMN BORDERED GRID -->
+          <div class="vg-leader-grid">
+
+            <!-- Card 1: Gautam Adani -->
+            <div class="vg-leader-card">
+              <div class="vg-leader-img">
+                <img src="gautam-adani.jpg" alt="Gautam Adani">
+              </div>
+              <div class="vg-leader-meta">
+                <div class="vg-leader-info">
+                  <h3>GAUTAM ADANI</h3>
+                  <p>Chairman, Adani Group</p>
+                </div>
+                <span class="vg-arrow-icon">&rarr;</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Dr. Priti Adani -->
+            <div class="vg-leader-card">
+              <div class="vg-leader-img">
+                <img src="priti-adani.jpg" alt="Dr. Priti Adani">
+              </div>
+              <div class="vg-leader-meta">
+                <div class="vg-leader-info">
+                  <h3>DR. PRITI ADANI</h3>
+                  <p>Chairperson, Adani Foundation</p>
+                </div>
+                <span class="vg-arrow-icon">&rarr;</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Rajesh Adani -->
+            <div class="vg-leader-card">
+              <div class="vg-leader-img">
+                <img src="rajesh-adani.jpg" alt="Rajesh Adani">
+              </div>
+              <div class="vg-leader-meta">
+                <div class="vg-leader-info">
+                  <h3>RAJESH ADANI</h3>
+                  <p>Managing Director, Adani Enterprises Ltd</p>
+                </div>
+                <span class="vg-arrow-icon">&rarr;</span>
+              </div>
+            </div>
+
+            <!-- Card 4: Pranav Adani -->
+            <div class="vg-leader-card">
+              <div class="vg-leader-img">
+                <img src="pranav-adani.jpg" alt="Pranav Adani">
+              </div>
+              <div class="vg-leader-meta">
+                <div class="vg-leader-info">
+                  <h3>PRANAV ADANI</h3>
+                  <p>Managing Director, Agro, Oil & Gas</p>
+                </div>
+                <span class="vg-arrow-icon">&rarr;</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 7. OUR CORE VALUES SECTION -->
+      <section class="vg-values-section" id="core-values">
+        <div class="vg-values-container">
+          
+          <!-- MAIN HEADING -->
+          <h2 class="vg-values-heading">
+            OUR CORE VALUES DEFINE THE JOURNEY THAT IS, HAS BEEN, AND ALWAYS WILL BE
+          </h2>
+
+          <!-- 3-COLUMN VALUES GRID -->
+          <div class="vg-values-grid">
+
+            <!-- Item 1: Trust -->
+            <div class="vg-value-card">
+              <div class="vg-val-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#225ca8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M32 12l10 4v8c0 8-5 13-10 15-5-2-10-7-10-15v-8z"/>
+                  <path d="M29 24l2 2 4-4"/>
+                  <path d="M19 46c-3-2-5-6-5-10 0-6 4-10 8-12"/>
+                  <path d="M45 46c3-2 5-6 5-10 0-6-4-10-8-12"/>
+                  <path d="M20 52h24"/>
+                  <path d="M20 46v6"/>
+                  <path d="M44 46v6"/>
+                </svg>
+              </div>
+              <h3 class="vg-val-title">Trust</h3>
+              <p class="vg-val-desc">
+                We shall believe in our employees and other stakeholders.
+              </p>
+            </div>
+
+            <!-- Item 2: Courage -->
+            <div class="vg-value-card">
+              <div class="vg-val-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#225ca8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M32 10v4"/>
+                  <path d="M22 14l3 3"/>
+                  <path d="M42 14l-3 3"/>
+                  <path d="M16 24h4"/>
+                  <path d="M48 24h-4"/>
+                  <rect x="25" y="22" width="14" height="15" rx="3"/>
+                  <path d="M25 26h14"/>
+                  <path d="M25 30h14"/>
+                  <path d="M22 28c0-3 3-5 5-5"/>
+                  <path d="M27 37v15h10V37"/>
+                </svg>
+              </div>
+              <h3 class="vg-val-title">Courage</h3>
+              <p class="vg-val-desc">
+                We shall embrace news and businesses.
+              </p>
+            </div>
+
+            <!-- Item 3: Commitment -->
+            <div class="vg-value-card">
+              <div class="vg-val-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#225ca8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="32" cy="18" r="6"/>
+                  <path d="M32 10v2M32 24v2M24 18h2M38 18h2"/>
+                  <path d="M30 18l1.5 1.5 3-3"/>
+                  <path d="M21 34h-6v16h6z"/>
+                  <path d="M43 34h6v16h-6z"/>
+                  <path d="M21 40h10a4 4 0 0 1 0 8H21"/>
+                  <path d="M43 40H33a4 4 0 0 0 0 8h10"/>
+                  <path d="M31 34c0-4 3-7 5-7"/>
+                </svg>
+              </div>
+              <h3 class="vg-val-title">Commitment</h3>
+              <p class="vg-val-desc">
+                We shall stand by our promises and adhere to high standards of business.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- PANE 2: WHAT DRIVES US (FROM THE LEADER / MISSION) -->
+    <div class="tab-pane" id="pane-thoughts">
+      <section class="mission-section" id="thoughts">
+        <div class="mission-container">
+          <span class="section-small-tag">WHAT DRIVES US</span>
+          <h2 class="section-main-heading">Our Mission &amp; Vision</h2>
+
+          <div class="mission-quote-box">
+            <p class="mission-quote">
+              "To accelerate India's transition to clean energy by developing world-class solar power infrastructure and delivering reliable, affordable electricity to the industries and communities that need it most."
+            </p>
+          </div>
+
+          <div class="mission-grid">
+            <div class="mission-card">
+              <div class="mission-card-title-wrapper">
+                <div class="mission-card-bar"></div>
+                <h3 class="mission-card-title">Scale with Purpose</h3>
+              </div>
+              <p class="mission-card-desc">We build large &mdash; because large-scale solar is what moves the needle on India's energy transition.</p>
+            </div>
+            <div class="mission-card">
+              <div class="mission-card-title-wrapper">
+                <div class="mission-card-bar"></div>
+                <h3 class="mission-card-title">Reliability First</h3>
+              </div>
+              <p class="mission-card-desc">Our clients depend on uninterrupted power. We engineer for uptime, not just capacity.</p>
+            </div>
+            <div class="mission-card">
+              <div class="mission-card-title-wrapper">
+                <div class="mission-card-bar"></div>
+                <h3 class="mission-card-title">Rooted in Rajasthan</h3>
+              </div>
+              <p class="mission-card-desc">We are a Rajasthan company. Our projects create local employment and contribute to the state's economy.</p>
+            </div>
+            <div class="mission-card">
+              <div class="mission-card-title-wrapper">
+                <div class="mission-card-bar"></div>
+                <h3 class="mission-card-title">Transparent Partnerships</h3>
+              </div>
+              <p class="mission-card-desc">Whether with investors, governments, or industrial clients &mdash; we operate with full transparency and long-term commitment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PANE 3: LEADERSHIP -->
+    <div class="tab-pane" id="pane-leadership">
+      <section class="leadership-section" id="leadership">
+        <div class="leadership-container">
+          <span class="section-small-tag">LEADERSHIP</span>
+          <h2 class="section-main-heading">The Team Behind the Megawatts</h2>
+
+          <div class="leadership-grid">
+            <div class="leader-card">
+              <div class="leader-avatar">R</div>
+              <div class="leader-info">
+                <h3 class="leader-name">Rajendra Vaijanti</h3>
+                <span class="leader-role">CHAIRMAN &amp; FOUNDER</span>
+                <p class="leader-bio">A veteran infrastructure developer with 25+ years in Rajasthan's energy and construction sectors. Rajendra founded Vaijanti Green Energy to channel the group's expertise into India's solar revolution.</p>
+              </div>
+            </div>
+            <div class="leader-card">
+              <div class="leader-avatar">P</div>
+              <div class="leader-info">
+                <h3 class="leader-name">Priya Sharma</h3>
+                <span class="leader-role">MANAGING DIRECTOR</span>
+                <p class="leader-bio">Former senior executive at NTPC Renewable Energy, Priya brings deep expertise in utility-scale solar project development, government PPA negotiations, and regulatory affairs.</p>
+              </div>
+            </div>
+            <div class="leader-card">
+              <div class="leader-avatar">A</div>
+              <div class="leader-info">
+                <h3 class="leader-name">Anil Mehta</h3>
+                <span class="leader-role">CHIEF TECHNICAL OFFICER</span>
+                <p class="leader-bio">With 18 years in solar EPC and grid integration, Anil oversees all engineering, procurement, and commissioning activities across Vaijanti's project portfolio.</p>
+              </div>
+            </div>
+            <div class="leader-card">
+              <div class="leader-avatar">S</div>
+              <div class="leader-info">
+                <h3 class="leader-name">Sunita Rathore</h3>
+                <span class="leader-role">HEAD OF BUSINESS DEVELOPMENT</span>
+                <p class="leader-bio">Sunita leads Vaijanti's commercial strategy &mdash; managing relationships with industrial clients, state utilities, and investment partners across India.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PANE 4: OUR JOURNEY -->
+    <div class="tab-pane" id="pane-journey">
+      <section class="cert-section">
+        <div class="cert-container">
+          <span class="section-small-tag">CERTIFICATIONS &amp; ACCREDITATIONS</span>
+          <h2 class="section-main-heading" style="color: #ffffff; margin-bottom: 10px;">Our Journey &amp; Milestones</h2>
+          
+          <div class="cert-grid">
+            <div class="cert-box">
+              <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div>
+              <h4 class="cert-name">ISO 9001:2015</h4>
+              <span class="cert-sub">Quality Management System</span>
+            </div>
+            <div class="cert-box">
+              <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div>
+              <h4 class="cert-name">ISO 14001:2015</h4>
+              <span class="cert-sub">Environmental Management</span>
+            </div>
+            <div class="cert-box">
+              <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div>
+              <h4 class="cert-name">MNRE Empanelled</h4>
+              <span class="cert-sub">Ministry of New &amp; Renewable Energy</span>
+            </div>
+            <div class="cert-box">
+              <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div>
+              <h4 class="cert-name">BIS Certified</h4>
+              <span class="cert-sub">Bureau of Indian Standards</span>
+            </div>
+            <div class="cert-box">
+              <div class="cert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div>
+              <h4 class="cert-name">SEBI Registered</h4>
+              <span class="cert-sub">Securities &amp; Exchange Board of India</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- READY TO WORK CTA -->
+    <section class="ready-cta-section">
+      <div class="ready-cta-container">
+        <h2 class="cta-work-heading">Ready to work with us?</h2>
+        <p class="cta-work-sub">
+          Whether you're a government body, industrial consumer, or investor &mdash; we'd love to explore how Vaijanti Green Energy can power your future.
+        </p>
+
+        <div class="cta-btn-group">
+          <a href="./contact.html" class="btn-orange-cta">GET IN TOUCH &rarr;</a>
+          <a href="./projects.html" class="btn-outline-cta">VIEW OUR PROJECTS</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="yellow-strip">
+      HARNESSING RAJASTHAN'S SUN — POWERING INDIA'S TOMORROW
+    </div>
+
+    <div class="footer-main">
+      <div>
+        <div class="brand-header">
+          <div class="brand-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white" stroke="none">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <div class="brand-title">
+            <h3>VAIJANTI GREEN ENERGY</h3>
+            <span>SOLAR POWER DEVELOPMENT</span>
+          </div>
+        </div>
+
+        <p class="brand-desc">
+          Vaijanti Green Energy is a leading solar power plant developer and electricity supplier based in Rajasthan. We establish large-scale solar projects and deliver clean, affordable power to industries and governments across India.
+        </p>
+
+        <ul class="contact-list">
+          <li class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-8-7.5-8-12a8 8 0 1 1 16 0c0 4.5-8 12-8 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+            <span>Vaijanti Group, Bahadurgarh, Haryana — 124507, India</span>
+          </li>
+          <li class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <a href="tel:+918950444885">+91 8950444885</a>
+          </li>
+          <li class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <a href="mailto:contact@vaijantigroup.com">contact@vaijantigroup.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>QUICK LINKS</h4>
+        <ul class="footer-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./projects.html">Projects</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./electricity-sales.html">Electricity Sales</a></li>
+          <li><a href="./investors.html">Investors</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>OUR SERVICES</h4>
+        <ul class="footer-links">
+          <li><a href="./projects.html">Solar Power Plant Development</a></li>
+          <li><a href="./electricity-sales.html">Electricity Sales &amp; PPA</a></li>
+          <li><a href="./projects.html">Government Solar Projects</a></li>
+          <li><a href="./electricity-sales.html">Industrial Power Supply</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Vaijanti Green Energy. All rights reserved.</div>
+      <div>vaijantigroup.com — Rajasthan, India</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Header Dropdown Toggle for Projects/About
+      const projectsNavItem = document.getElementById('projectsNavItem');
+      if (projectsNavItem) {
+        const projectsParentSpan = projectsNavItem.querySelector('.nav-link');
+        projectsParentSpan.addEventListener('click', (e) => {
+          e.stopPropagation();
+          projectsNavItem.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (!projectsNavItem.contains(e.target)) {
+            projectsNavItem.classList.remove('open');
+          }
+        });
+      }
+
+      // About Us Dropdown Switcher Logic
+      const aboutSwitchLinks = document.querySelectorAll('.about-switch-link');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+
+      aboutSwitchLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetPaneId = link.getAttribute('data-pane');
+
+          // Hide all panes
+          tabPanes.forEach(pane => pane.classList.remove('active-pane'));
+
+          // Show targeted pane
+          const targetPane = document.getElementById(targetPaneId);
+          if (targetPane) {
+            targetPane.classList.add('active-pane');
+          }
+
+          // Refresh ScrollTrigger when changing tabs
+          if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+          }
+
+          // Scroll smoothly below hero
+          window.scrollTo({
+            top: 600,
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // Search Bar Functionality
+      const searchContainer = document.getElementById('searchContainer');
+      const searchToggleBtn = document.getElementById('searchToggleBtn');
+      const searchInput = document.getElementById('searchInput');
+
+      if (searchToggleBtn && searchContainer) {
+        searchToggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          searchContainer.classList.toggle('active');
+          if (searchContainer.classList.contains('active')) {
+            searchInput.focus();
+          } else {
+            searchInput.value = '';
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!searchContainer.contains(e.target)) {
+            searchContainer.classList.remove('active');
+          }
+        });
+      }
+
+      // Scroll-to-Top Visibility Handler
+      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.classList.add('visible');
+        } else {
+          scrollToTopBtn.classList.remove('visible');
+        }
+      });
+
+      // GSAP & ScrollTrigger Animations
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animations
+        const heroTimeline = gsap.timeline({
+          defaults: { ease: "power3.out" }
+        });
+
+        heroTimeline
+          .to(".vaijanti-group-hero-image", { scale: 1, duration: 2.2, ease: "power2.out" })
+          .to(".vaijanti-group-title", { opacity: 1, y: 0, duration: 1 }, "-=1.4")
+          .to(".vaijanti-group-subtitle", { opacity: 1, y: 0, duration: 0.8 }, "-=0.65")
+          .to(".vaijanti-breadcrumb", { opacity: 1, y: 0, duration: 0.7 }, "-=0.45");
+
+        gsap.to(".vaijanti-group-hero-image", {
+          yPercent: 10,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".vaijanti-group-hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+
+        gsap.to(".vaijanti-group-content", {
+          y: -60,
+          opacity: 0.85,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".vaijanti-group-hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+
+        gsap.to(".vaijanti-scroll-indicator", {
+          opacity: 0,
+          scrollTrigger: {
+            trigger: ".vaijanti-group-hero",
+            start: "top top",
+            end: "30% top",
+            scrub: true
+          }
+        });
+
+        // Founder Animations
+        gsap.fromTo(".founder-image-wrapper", 
+          { x: -100, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".founder-section",
+              start: "top 75%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+
+        gsap.to(".founder-img", {
+          yPercent: 6,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".founder-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+
+        gsap.to(".founder-quote-box", {
+          opacity: 1,
+          y: 0,
+          duration: 1.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".founder-section",
+            start: "top 65%",
+            toggleActions: "play none none reverse"
+          }
+        });
+
+        gsap.to(".founder-details", {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          delay: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".founder-section",
+            start: "top 55%",
+            toggleActions: "play none none reverse"
+          }
+        });
+
+        // Company Vision Animation
+        const visionContent = document.querySelector(".vg-vision-content");
+        const visionImage = document.querySelector(".vg-vision-image");
+        if (visionContent && visionImage) {
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: ".vg-vision-section",
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          })
+          .to(visionContent, {
+            opacity: 1,
+            x: 0,
+            duration: 0.9,
+            ease: "power2.out"
+          })
+          .to(visionImage, {
+            opacity: 1,
+            x: 0,
+            duration: 0.9,
+            ease: "power2.out"
+          }, "-=0.5");
+        }
+
+        // Impact Section Animation & Counter
+        const impactHeading = document.querySelector(".vg-impact-heading");
+        const impactCards = document.querySelectorAll(".vg-impact-card");
+        if (impactHeading && impactCards.length > 0) {
+          const impactTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".vg-impact-section",
+              start: "top 75%",
+              once: true
+            }
+          });
+
+          impactTl
+            .to(impactHeading, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out"
+            })
+            .to(impactCards, {
+              opacity: 1,
+              y: 0,
+              duration: 0.9,
+              stagger: 0.18,
+              ease: "power3.out"
+            }, "-=0.4")
+            .add(() => {
+              document.querySelectorAll(".vg-stat-num").forEach(counter => {
+                const target = parseFloat(counter.getAttribute("data-target"));
+                const suffix = counter.getAttribute("data-suffix") || "";
+                const decimals = parseInt(counter.getAttribute("data-decimals")) || 0;
+                const obj = { val: 0 };
+
+                gsap.to(obj, {
+                  val: target,
+                  duration: 2.2,
+                  ease: "power2.out",
+                  onUpdate: function () {
+                    counter.textContent = obj.val.toFixed(decimals) + suffix;
+                  }
+                });
+              });
+            }, "-=0.6");
+        }
+
+      } else {
+        // Fallbacks
+        const visionContent = document.querySelector(".vg-vision-content");
+        const visionImage = document.querySelector(".vg-vision-image");
+        if (visionContent) { visionContent.style.opacity = "1"; visionContent.style.transform = "none"; }
+        if (visionImage) { visionImage.style.opacity = "1"; visionImage.style.transform = "none"; }
+
+        const impactHeading = document.querySelector(".vg-impact-heading");
+        if (impactHeading) { impactHeading.style.opacity = "1"; impactHeading.style.transform = "none"; }
+        document.querySelectorAll(".vg-impact-card").forEach(el => {
+          el.style.opacity = "1";
+          el.style.transform = "none";
+        });
+        document.querySelectorAll(".vg-stat-num").forEach(el => {
+          el.textContent = el.dataset.target + (el.dataset.suffix || "");
+        });
+      }
+    });
+
+    window.addEventListener("load", function() {
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    });
+  </script>
+</body>
+</html>

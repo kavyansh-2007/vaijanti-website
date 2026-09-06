@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome — Vaijanti Enterprises</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Oswald:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #120a00;
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(255, 157, 0, 0.15) 0%, rgba(247, 166, 0, 0.03) 40%, transparent 70%);
+      border-radius: 50%;
+      z-index: 1;
+      animation: ambientPulse 3s infinite alternate ease-in-out;
+    }
+    @keyframes ambientPulse {
+      0% { transform: scale(0.85); opacity: 0.5; }
+      100% { transform: scale(1.15); opacity: 1; }
+    }
+    .welcome-wrapper {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 4%;
+      max-width: 1100px;
+    }
+    .welcome-badge {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: #ff9d00;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeSlideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
+    }
+    @keyframes fadeSlideDown {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .welcome-title {
+      font-family: 'Cinzel', serif;
+      font-size: 58px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      line-height: 1.25;
+      color: #ffffff;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+    }
+    .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(30px);
+      filter: blur(10px);
+      animation: corporateReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .word.gold {
+      color: #ffd200;
+      text-shadow: 0 0 30px rgba(255, 210, 0, 0.35);
+    }
+    .word:nth-child(1) { animation-delay: 0.4s; }
+    .word:nth-child(2) { animation-delay: 0.6s; }
+    .word:nth-child(3) { animation-delay: 0.8s; }
+    .word:nth-child(4) { animation-delay: 1.0s; }
+    @keyframes corporateReveal {
+      0% { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    .progress-container {
+      width: 260px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 35px auto 0 auto;
+      border-radius: 4px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInBar 0.5s ease forwards 1.2s;
+    }
+    @keyframes fadeInBar {
+      to { opacity: 1; }
+    }
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff9d00, #ffd200);
+      box-shadow: 0 0 10px #ff9d00;
+      animation: fillTimer 3s linear forwards 1.2s;
+    }
+    @keyframes fillTimer {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    @media (max-width: 768px) {
+      .welcome-title { font-size: 36px; gap: 10px; }
+      .progress-container { width: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-wrapper">
+    <div class="welcome-badge">VAIJANTI ENTERPRISES GROUP</div>
+    <h1 class="welcome-title">
+      <span class="word">WELCOME</span>
+      <span class="word">TO</span>
+      <span class="word gold">VAIJANTI</span>
+      <span class="word gold">ENTERPRISES</span>
+    </h1>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('visited_before')) {
+      window.location.href = "home.html";
+    } else {
+      sessionStorage.setItem('visited_before', 'true');
+      setTimeout(function() {
+        window.location.href = "home.html";
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
